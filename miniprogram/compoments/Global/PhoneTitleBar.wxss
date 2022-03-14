@@ -1,0 +1,24 @@
+
+.top {
+  width: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 11.733333333333333vw;
+}
+
+.back-arrow {
+  width: 5.466666666666667vw;
+  height: 4.666666666666667vw;
+  position: absolute;
+  left: 4vw;
+}
+
+.title {
+  font-size: 4.8vw;
+  font-weight: bold;
+  color: #111111;
+  position: absolute;
+}

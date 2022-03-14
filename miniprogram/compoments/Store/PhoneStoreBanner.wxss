@@ -1,0 +1,69 @@
+
+
+.store-banner {
+    text-align: center;
+}
+
+.store-banner-img-box {
+    width: 100vw;
+    height: 33.4vw;
+    background: #ffaa01;
+    overflow: hidden;
+}
+
+.store-banner-header-img-box {
+    margin-top: -13vw;
+    width: 22vw;
+    height: 22vw;
+    border-radius: 50%;
+    border: 1.5vw solid white;
+    overflow: hidden;
+    display: inline-flex;
+    justify-content: center;
+    position: relative;
+}
+
+.store-banner-header-title {
+    margin-top: 2vw;
+    font-size: 5vw;
+    font-weight: bold;
+    color: #1e1e1e;
+}
+
+.store-banner-header-subtitle {
+    margin-top: 0.05vw;
+    font-size: 3.5vw;
+    font-weight: 400;
+    color: #1e1e1e;
+}
+
+.store-banner-statistical {
+    background-color: white;
+    background: #ffffff;
+    border-radius: 3vw;
+    position: relative;
+    height: 20.53vw;
+    width: 92vw;
+    margin-left: 4vw;
+    margin-top: 2vw;
+}
+
+.store-banner-statistical-item {
+    width: 23vw;
+    height: 20.53vw;
+    display: inline-block;
+}
+
+.store-banner-statistical-item-title {
+    font-size: 4vw;
+
+    font-weight: bold;
+    color: #000219;
+}
+
+.store-banner-statistical-item-num {
+    margin-top: 6.2vw;
+    font-size: 3.2vw;
+    font-weight: bold;
+    color: #646464;
+}

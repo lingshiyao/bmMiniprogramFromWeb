@@ -1,0 +1,21 @@
+<view class="phone-nft-info-bottom">
+    <view class="phone-nft-info-bottom-collection" bindtap="action" data-index="1">
+        <image show-menu-by-longpress lazy-load class="phone-nft-info-bottom-img"
+               src="{{src}}" style="width: 7.07vw; height: 6.53vw;"/>
+        <view class="phone-nft-info-bottom-title">
+            收藏
+        </view>
+    </view>
+    <view class="phone-nft-info-bottom-collection" bindtap="action" data-index="2">
+        <image show-menu-by-longpress lazy-load class="phone-nft-info-bottom-img" src="{{src1}}" style="width: 6.13vw;height: 6.13vw;"/>
+        <view class="phone-nft-info-bottom-title">
+            修改
+        </view>
+    </view>
+    <view wx:if="{{nft.supply >= nft.maxSupply}}" class="phone-nft-info-bottom-buy" style="background-color: gray">
+        已售罄
+    </view>
+    <view wx:else class="phone-nft-info-bottom-buy" bindtap="action" data-index="3">
+        立即购买
+    </view>
+</view>

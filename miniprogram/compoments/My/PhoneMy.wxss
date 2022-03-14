@@ -1,0 +1,81 @@
+.my {
+    background: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.banner {
+    width: 92vw;
+    height: 39.47vw;
+    border-radius: 3vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.banner-bg {
+    width: 92vw;
+    height: 39.47vw;
+    border-radius: 3vw;
+}
+
+.header {
+    border-radius: 8.2vw;
+    background: #131c43;
+}
+
+.header-border {
+    width: 17.81vw;
+    height: 17.81vw;
+    background: #ffffff;
+    border-radius: 8.905vw;
+    position: absolute;
+    display: inline-flex;
+    overflow: hidden;
+    justify-content: center;
+    margin-top: 5.6vw;
+}
+
+.name {
+    font-size: 3.2vw;
+    font-weight: 500;
+    color: #ffffff;
+    position: absolute;
+    margin-top: 26.13vw;
+}
+
+.select1 {
+    width: 89vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 3.73vw;
+}
+
+.select2 {
+    width: 93vw;
+    display: flex;
+    flex-direction: row;
+    margin-top: 3.1vw;
+}
+
+.top-line {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 4.8vw;
+    margin-bottom: 2.67vw;
+}
+
+.setting {
+    width: 5.87vw;
+    height: 5.87vw;
+    background: #ffffff;
+    box-shadow: 0vw 0vw 1vw 0vw rgba(0, 0, 0, 0.12);
+    border-radius: 3vw;
+    margin-right: 4vw;
+}

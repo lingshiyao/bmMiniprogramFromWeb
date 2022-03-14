@@ -1,0 +1,18 @@
+<view class="phone-home-recommend-item">
+<!--    TODO 未验证-->
+<!--    <view class="phone-home-recommend-item-img-box">-->
+<!--        <image class="phone-home-recommend-item-img" id="{{'phone_home_recommend_img' + data.id}}"-->
+<!--               src="{{data.img}}" />-->
+<!--    </view>-->
+    <view class="phone-home-recommend-item-img-box">
+        <LoadingImg show-menu-by-longpress lazy-load mode="aspectFill" class="phone-home-recommend-item-img-box" id="{{'phone_home_recommend_img' + data.id}}"
+               src="{{data.img}}" />
+    </view>
+
+    <view class="phone-home-recommend-item-title">
+        {{ data.title }}
+    </view>
+    <view class="phone-home-recommend-item-subtitle">
+        {{ data.content }}
+    </view>
+</view>

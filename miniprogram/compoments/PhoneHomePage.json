@@ -1,0 +1,5 @@
+{"component": true, "usingComponents": {
+  "PhoneHomeBanner": "/compoments/Home/PhoneHomeBanner",
+  "PhoneHomeRecommend": "/compoments/Home/PhoneHomeRecommend",
+  "PhoneHomeGroup": "/compoments/Home/PhoneHomeGroup"
+}}

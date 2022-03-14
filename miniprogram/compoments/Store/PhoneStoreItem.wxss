@@ -1,0 +1,88 @@
+.phone-store-item {
+    display: inline-block;
+}
+
+.phone-store-item-content {
+    background-color: white;
+    width: 44vw;
+    border-radius: 3vw;
+    text-align: left;
+    overflow: hidden;
+    z-index: 2;
+    /*margin: 2vw;*/
+}
+
+.phone-store-item-img-border {
+    width: 44.67vw;
+    height: 44vw;
+    border-radius: 3vw 3vw 0vw 0vw;
+    background: #F99D1A;
+    overflow: hidden;
+    display: inline-flex;
+    justify-content: center;
+    position: relative;
+}
+
+.phone-store-item-img {
+    position: absolute;
+}
+
+.phone-store-item-title {
+    height: 3.5vw;
+    line-height: 2vw;
+    font-size: 3vw;
+    font-weight: bold;
+    color: #7f7f7f;
+    display: inline-block;
+    text-align: left;
+    margin-top: 1vw;
+    margin-left: 1.5vw;
+}
+
+.phone-store-item-name {
+    margin-left: 1.5vw;
+    margin-top: 1.5vw;
+}
+
+.phone-store-item-subtitle {
+    height: 2vw;
+    line-height: 2vw;
+    font-size: 3vw;
+    font-weight: 400;
+    color: #646464;
+    display: inline-block;
+}
+
+.phone-store-item-name-title {
+    height: 2vw;
+    font-size: 3vw;
+    line-height: 2vw;
+    font-weight: bold;
+    color: #1e1e1e;
+    display: inline-block;
+}
+
+.phone-store-item-money {
+    margin-left: 1.5vw;
+    margin-top: 1vw;
+    font-size: 3.4vw;
+    display: inline-block;
+    color: #f53d3d;
+    margin-bottom: 2vw;
+}
+
+.phone-store-item-like {
+    float: right;
+    margin-top: 1vw;
+    margin-right: 2vw;
+    font-size: 3.1vw;
+    vertical-align: middle;
+}
+
+.phone-store-item-like-img {
+    vertical-align: middle;
+    margin-right: 1vw;
+    margin-top: -0.5vw;
+    width: 2.4vw;
+    height: 2.13vw;
+}

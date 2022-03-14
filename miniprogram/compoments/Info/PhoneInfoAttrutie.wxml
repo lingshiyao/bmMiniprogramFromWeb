@@ -1,0 +1,23 @@
+<view class="phone-info-attribute">
+    <view class="phone-info-attribute-content">
+        <text class="phone-info-attribute-title">
+            属性
+        </text>
+        <view class="phone-info-attribute-content-item">
+            <view class="phone-info-attribut-item" wx:for="{{attributes}}" wx:for-item="item" wx:for-index="index"
+                  key="{{index}}" wx:key="unique">
+                <text class="phone-info-attribut-item-title">
+                    {{ index }}:
+                </text>
+                <text class="phone-info-attribut-item-content">
+                    {{ item }}
+                </text>
+                <view wx:for="{{attributesNumner}}" wx:for-item="row" wx:for-index="i" wx:key="unique">
+                    <text wx:if="{{i === index}}" class="phone-info-attribut-item-details">
+                        {{ row }} 件作品拥有该属性
+                    </text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

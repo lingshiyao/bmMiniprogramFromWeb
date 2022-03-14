@@ -1,0 +1,69 @@
+<view class="base">
+    <text class="title">PhoneCreation</text>
+    <PhoneCreation></PhoneCreation>
+    <text class="title">PhoneExploreItem</text>
+    <PhoneExploreItem></PhoneExploreItem>
+    <text class="title">PhoneSelectToolBar</text>
+    <PhoneSelectToolBar></PhoneSelectToolBar>
+    <text class="title">PhoneModalInput</text>
+    <PhoneModalInput></PhoneModalInput>
+    <text class="title">PhoneModalLoading</text>
+    <PhoneModalLoading></PhoneModalLoading>
+    <text class="title">PhoneModalTips</text>
+    <PhoneModalTips></PhoneModalTips>
+    <text class="title">PhoneNothing</text>
+    <PhoneNothing></PhoneNothing>
+    <text class="title">PhoneTitleBar</text>
+    <PhoneTitleBar></PhoneTitleBar>
+    <text class="title">PhoneHomeBanner</text>
+    <PhoneHomeBanner></PhoneHomeBanner>
+    <text class="title">PhoneHomeGroup</text>
+    <PhoneHomeGroup></PhoneHomeGroup>
+    <text class="title">PhoneHomeGroupItem</text>
+    <PhoneHomeGroupItem></PhoneHomeGroupItem>
+    <text class="title">PhoneHomeRecommend</text>
+    <PhoneHomeRecommend></PhoneHomeRecommend>
+    <text class="title">PhoneHomeRecommendItem</text>
+    <PhoneHomeRecommendItem></PhoneHomeRecommendItem>
+    <text class="title">PhoneInfoAttrutie</text>
+    <PhoneInfoAttrutie></PhoneInfoAttrutie>
+    <text class="title">PhoneInfoBottom</text>
+<!--    <PhoneInfoBottom></PhoneInfoBottom>-->
+    <text class="title">PhoneInfoIntroduction</text>
+    <PhoneInfoIntroduction></PhoneInfoIntroduction>
+
+    <text class="title">LoadingIcon3</text>
+    <LoadingIcon3></LoadingIcon3>
+    <text class="title">PhoneMy</text>
+    <PhoneMy></PhoneMy>
+    <text class="title">PhoneMyCollection</text>
+    <PhoneMyCollection></PhoneMyCollection>
+    <text class="title">PhoneMyCreation</text>
+    <PhoneMyCreation></PhoneMyCreation>
+    <text class="title">PhoneMyFavorite</text>
+    <PhoneMyFavorite></PhoneMyFavorite>
+    <text class="title">PhoneMyItem</text>
+    <PhoneMyItem></PhoneMyItem>
+    <text class="title">PhoneMyOrderItem</text>
+    <PhoneMyOrderItem></PhoneMyOrderItem>
+    <text class="title">PhoneNavigationBar</text>
+    <PhoneNavigationBar></PhoneNavigationBar>
+    <text class="title">PhoneMyOderListItem</text>
+    <PhoneMyOderListItem></PhoneMyOderListItem>
+    <text class="title">PhoneMyOrder</text>
+    <PhoneMyOrder></PhoneMyOrder>
+    <text class="title">PhoneBlindBox</text>
+    <PhoneBlindBox></PhoneBlindBox>
+    <text class="title">PhoneBlineRandomImg</text>
+    <PhoneBlineRandomImg></PhoneBlineRandomImg>
+    <text class="title">PhoneSelectBox</text>
+    <PhoneSelectBox></PhoneSelectBox>
+    <text class="title">PhoneStoreArtList</text>
+    <PhoneStoreArtList></PhoneStoreArtList>
+    <text class="title">PhoneStoreBanner</text>
+    <PhoneStoreBanner></PhoneStoreBanner>
+    <text class="title">PhoneStoreItem</text>
+    <PhoneStoreItem></PhoneStoreItem>
+
+
+</view>

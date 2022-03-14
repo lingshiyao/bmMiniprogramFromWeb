@@ -1,0 +1,8 @@
+<view>
+    <view wx:if="{{selected === true}}" class="selected">
+        {{ name }}
+    </view>
+    <view wx:else class="no-selected">
+        {{ name }}
+    </view>
+</view>

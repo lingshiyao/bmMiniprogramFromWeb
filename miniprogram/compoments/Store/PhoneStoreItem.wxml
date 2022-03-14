@@ -1,0 +1,48 @@
+<view class="phone-store-item">
+    <view class="phone-store-item-content">
+
+<!--        // TODO 未验证-->
+<!--        <view class="phone-store-item-img-border">-->
+<!--            <image id="{{id}}" src="{{data.headerImg}}" class="phone-store-item-img"></image>-->
+<!--        </view>-->
+        <view class="phone-store-item-img-border">
+            <image show-menu-by-longpress lazy-load mode="aspectFill" id="{{id}}" src="{{data.headerImg}}" class="phone-store-item-img-border"></image>
+        </view>
+
+        <view class="phone-store-item-title">
+            {{ data.author }}
+            <image show-menu-by-longpress lazy-load src="{{src}}" style="width: 2.67vw;height: 2.8vw;"/>
+        </view>
+        <view class="phone-store-item-name">
+            <view class="phone-store-item-subtitle">
+                名称：
+            </view>
+            <view class="phone-store-item-name-title">
+                {{ data.name }}
+            </view>
+        </view>
+        <view wx:if="{{data.isShowNumber}}" class="phone-store-item-name">
+            <view class="phone-store-item-subtitle">
+                编号：
+            </view>
+            <view class="phone-store-item-name-title">
+                # {{ data.index }}/{{ data.maxSupply }}
+            </view>
+        </view>
+        <view wx:else class="phone-store-item-name">
+            <view class="phone-store-item-subtitle">
+                剩余：
+            </view>
+            <view class="phone-store-item-name-title">
+                {{ data.supple }}
+            </view>
+        </view>
+        <view class="phone-store-item-money">
+            ¥{{ data.price }}
+        </view>
+        <view class="phone-store-item-like">
+            <image show-menu-by-longpress lazy-load src="{{src1}}" class="phone-store-item-like-img" />
+            {{ data.like }}
+        </view>
+    </view>
+</view>

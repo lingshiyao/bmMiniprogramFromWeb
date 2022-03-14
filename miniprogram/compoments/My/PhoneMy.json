@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "header-item1": "./PhoneMyItem",
+    "PhoneMyOrder": "../Order/PhoneMyOrder",
+    "PhoneMyOrderItem": "./PhoneMyOrderItem",
+    "PhoneMyCollection": "./PhoneMyCollection",
+    "PhoneMyFavorite": "./PhoneMyFavorite",
+    "PhoneMyCreation": "./PhoneMyCreation"
+  }
+}

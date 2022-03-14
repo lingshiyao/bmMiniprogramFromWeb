@@ -1,0 +1,31 @@
+<view class="store-art-list">
+    <view class="store-art-list-content">
+        <view class="store-art-input-box">
+            <!--            FIXME-->
+            <!--            <form-->
+            <!--            @submit.prevent="secrchAction" action="javascript:return true;">-->
+            <!--            <image class="store-art-input-img" src="../../../assets/ic_search.png"></image>-->
+
+
+            <!--            <input id="phone_search_input" type="text"-->
+            <!--            @keyup.13="secrchAction()" ref="input" class="store-art-input" />-->
+            <!--    </form>-->
+        </view>
+        <PhoneSelectBox menuData="{{selectBoxData}}"
+                        class="store-art-select-box"
+        bind:clickCallBack="clickCallBack" />
+    </view>
+
+
+    <view class="phone-store-item-box">
+        <block wx:for="{{data}}" wx:for-item="item" wx:for-index="index" wx:key="unique">
+            <!--            TODO 动画没有了-->
+            <!--            <PhoneStoreItem class="animate__animated animate__bounceIn animate__faster" class="{{'phone-store-item'}}"-->
+            <!--                            bindtap="goToInfo" data-index="{{index}}"-->
+            <!--                            data="{{item}}"></PhoneStoreItem>-->
+            <PhoneStoreItem class="{{'phone-store-item'}}"
+                            bindtap="goToInfo" data-index="{{index}}"
+                            data="{{item}}"></PhoneStoreItem>
+        </block>
+    </view>
+</view>

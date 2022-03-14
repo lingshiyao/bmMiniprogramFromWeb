@@ -1,0 +1,8 @@
+<!--// TODO 未验证-->
+<!--<view class="phone-blind-random-img">-->
+<!--    <image class="phone-blind-random-img-class" id="phone-blind-random-img-id" src="{{imgSrc}}" />-->
+<!--</view>-->
+
+<view class="phone-blind-random-img">
+    <image show-menu-by-longpress lazy-load mode="aspectFill" class="phone-blind-random-img" id="phone-blind-random-img-id" src="{{imgSrc}}" />
+</view>

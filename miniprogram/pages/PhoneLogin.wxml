@@ -1,0 +1,20 @@
+<view>
+    <view class="login">
+        <image show-menu-by-longpress lazy-load src="{{girlUrl}}" class="girl-bg"></image>
+        <view class="border" style="margin-top:11.466666666666667vw">
+            <input bindinput="nameInput" class="input" placeholder="账号"></input>
+        </view>
+        <view class="border" style="margin-top:4vw">
+            <input type="password" bindinput="pwdInput" class="input" placeholder="密码"></input>
+        </view>
+        <view style="{{loginBtnStyle}}" class="login-btn" bindtap="clickLogin">
+            登录
+        </view>
+        <view class="line">
+            <view class="s-txt" bindtap="register">
+                立即注册
+            </view>
+        </view>
+    </view>
+    <PhoneModalInput id="phoneModalInput"></PhoneModalInput>
+</view>

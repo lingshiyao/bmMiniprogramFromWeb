@@ -1,0 +1,29 @@
+<view class="phone-home-banner">
+<!--    // TODO 未验证-->
+<!--    <view class="phone-home-banner-img" bindtap="goToPage" data-0="0">-->
+<!--        <image class="phone-home-banner-img" mode="scaleToFill" id="phone_banner_img" src="{{bannerData.bannerImgUrl}}"/>-->
+<!--    </view>-->
+    <view class="phone-home-banner-img" bindtap="goToPage" data-index="0">
+        <LoadingImg show-menu-by-longpress lazy-load bindload="imageOnLoad" class="phone-home-banner-img" mode="aspectFill" id="phone_banner_img" src="{{bannerData.bannerImgUrl}}"/>
+    </view>
+    <view class="phone-home-banner-title">
+        发现、收集和销售非凡的 NFT
+    </view>
+    <view class="phone-home-banner-subtitle">
+        发现、收集和销售非凡的 NFT
+    </view>
+    <view style="text-align:left">
+        <view class="phone-home-banner-btn" bindtap="goToPage" data-index="1">
+            探索
+        </view>
+        <view class="phone-home-banner-btn" bindtap="goToPage" data-index="2">
+            创建
+        </view>
+    </view>
+    <view class="phone-home-banner-notif-box" style="text-align:left">
+        <image  show-menu-by-longpress  lazy-load class="phone-home-banner-notif-img" src="{{src}}"></image>
+        <view class="phone-home-banner-notif-title">
+            了解有关数字交换的更多信息
+        </view>
+    </view>
+</view>

@@ -1,0 +1,6 @@
+<view class="top">
+    <image show-menu-by-longpress lazy-load src="{{backArrowUrl}}" class="back-arrow" bindtap="back" />
+    <view class="title">
+        {{ title }}
+    </view>
+</view>

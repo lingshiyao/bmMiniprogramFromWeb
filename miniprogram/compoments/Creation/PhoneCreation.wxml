@@ -1,0 +1,32 @@
+<view>
+    <view class="creation">
+        <view class="create-collection animate__animated animate__fadeIn animate__faster">
+            <view class="left">
+                <view class="title1">
+                    创建店铺
+                </view>
+                <view class="title2">
+                    Create a Collection
+                </view>
+                <view class="btn" bindtap="showTip">
+                    立即创建
+                </view>
+            </view>
+            <image  show-menu-by-longpress lazy-load src="{{storeUrl}}" class="store-icon"></image>
+        </view>
+        <view class="create-item animate__animated animate__fadeIn animate__faster">
+            <view class="left">
+                <view class="title1">
+                    创建作品
+                </view>
+                <view class="title2">
+                    Create New Item
+                </view>
+                <view class="btn2" bindtap="showTip">
+                    立即创建
+                </view>
+            </view>
+            <image show-menu-by-longpress lazy-load src="{{itemUrl}}" class="store-icon"></image>
+        </view>
+    </view>
+</view>

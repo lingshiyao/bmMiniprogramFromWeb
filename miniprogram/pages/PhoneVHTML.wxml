@@ -1,0 +1,9 @@
+<view>
+    <view class="v-html">
+        <view class="area">
+            <view class="text" v-html="text"></view>
+        </view>
+    </view>
+    <FootMsg style="margin-top: 10vw;"
+             bind:goToVHtml="goToVHtml"/>
+</view>

@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/PhoneApp",
+    "pages/PhoneVHTML",
+    "pages/PhoneStorePage",
+    "pages/PhoneInfoPage",
+    "pages/PhoneChangePwd",
+    "pages/PhoneLogin",
+    "pages/PhoneSetting",
+    "pages/template/template"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

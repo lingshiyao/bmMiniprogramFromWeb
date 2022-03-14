@@ -1,0 +1,5 @@
+<view class="base">
+    <view wx:if="{{loading === true}}" class="loading"></view>
+    <image class="img" show-menu-by-longpress lazy-load bindload="onLoadingSuccess" binderror="onLoadingError"
+           mode="aspectFill" src="{{src}}"/>
+</view>

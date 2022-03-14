@@ -1,0 +1,22 @@
+<view>
+    <!--    FIXME data-="" data-="" 不知道是什么-->
+    <!--    <view wx:if="{{isShowMenu === false}}" bindtap="showMenuAction" data-="" data-="" data-0="0">-->
+    <view wx:if="{{isShowMenu === false}}" bindtap="showMenuAction" data-0="0">
+        <image show-menu-by-longpress lazy-load wx:if="{{menuData.showImg === true}}" class="select-box-img" src="{{leftImg}}"/>
+        <view class="select-box-title">
+            {{ fistTitle }}
+        </view>
+        <image show-menu-by-longpress lazy-load class="select-box-more" src="{{menuMoreImg}}"/>
+    </view>
+    <view class="select-box-bg" wx:if="{{isShowMenu === true}}" onMouseleave="{{disMiss}}">
+        <view class="select-box-button" wx:for="{{menuData.menu}}" wx:for-item="item" wx:for-index="index" wx:key="unique"
+              bindtap="menuAction" data-item="{{item}}" data-index="{{index}}">
+            <image show-menu-by-longpress lazy-load wx:if="{{menuData.showImg === true && index === 0}}" class="select-box-img"
+                   src="{{leftImg}}" />
+            <view class="select-box-title">
+                {{ item }}
+            </view>
+            <image show-menu-by-longpress lazy-load class="select-box-more" src="{{menuMoreImg}}" wx:if="{{index === 0}}"/>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "LoadingIcon3": "../LoadingIcon/LoadingIcon3"
+  }
+}

@@ -1,0 +1,42 @@
+.select-box-title {
+    /*FIXME*/
+    /*@include text(9.6vw, 3vw, 400, #1e1e1e);*/
+    text-align: left;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.select-box-title:hover {
+    color: #f99d1a;
+}
+
+.select-box-more {
+    position: relative;
+    float: right;
+    top: 4vw;
+    right: 3vw;
+    width: 2.41vw;
+    height: 1.21vw;
+}
+
+.select-box-img {
+    vertical-align: middle;
+    /*FIXME*/
+    /*margin-left: 15px;*/
+}
+
+.select-box-bg {
+    background-color: white;
+    border-radius: 3vw;
+    z-index: 10;
+    position: relative;
+    width: 100%;
+    border: 1px solid #f99d1a;
+}
+
+.select-box-button {
+    /*FIXME*/
+    /*@include size(100%, 9.6vw);*/
+    transition: top 1s;
+}
