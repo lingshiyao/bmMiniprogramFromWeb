@@ -1,8 +1,8 @@
 <view class="phone-info-intr">
-    <text class="phone-info-intr-title">
+    <view class="phone-info-intr-title">
         简介
-    </text>
-    <text class="phone-info-intr-content">
+    </view>
+    <view class="phone-info-intr-content">
         {{ intr }}
-    </text>
+    </view>
 </view>

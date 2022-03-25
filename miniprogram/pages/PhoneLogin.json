@@ -2,8 +2,6 @@
   "component": true,
   "navigationBarTitleText": "登录",
   "usingComponents": {
-    "PhoneTitleBar": "/compoments/Global/PhoneTitleBar",
-    "PhoneModalTips": "/compoments/Global/PhoneModalTips",
     "PhoneModalInput": "/compoments/Global/PhoneModalInput"
   }
 }

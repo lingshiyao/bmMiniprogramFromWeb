@@ -1,56 +1,41 @@
 <view class="border">
-    <view class="line">
-        <view class="time">
-            <!--            FIXME-->
-            <!--            {{ dateFormat(order.createdAt, "yyyy-mm-dd HH:MM:ss") }}-->
-        </view>
-        <view wx:if="{{order.state === 'WAIT_FOR_CONFIRM'}}" class="status-wait">
-            待确认
-        </view>
-        <view wx:if="{{order.state === 'WAIT_FOR_PAYMENT'}}" class="status-wait-pay">
-            待付款
-        </view>
-        <view wx:if="{{order.state === 'SUCCESS'}}" class="status-success">
-            已成功
-        </view>
-        <view wx:if="{{order.state === 'FAILED'}}" class="status-fail">
-            已失败
-        </view>
-    </view>
-    <view class="bottom">
-
-<!--        // TODO 未验证-->
-<!--        <view class="img-border" style="position: relative;">-->
-<!--            <image id="{{id}}" src="{{src}}" class="img" style="position: absolute;"></image>-->
-<!--        </view>-->
-        <view class="img-border" style="position: relative;">
-            <image show-menu-by-longpress lazy-load mode="aspectFill" id="{{id}}" src="{{src}}" class="img-border" style="position: absolute;"></image>
-        </view>
-
-        <view class="content">
-            <view class="id">
-                # {{ order.art.name }}
+    <view bindtap="goToInfo">
+        <view class="line">
+            <view class="time">
+                {{date}}
             </view>
-            <view class="line-content" style="margin-top:2.2vw">
-                <view class="text-title">
-                    订单编号:
-                </view>
-                <view class="text-content">
-                    {{ order.id }}
-                </view>
+            <view class="status-fail" style="{{getColor}}">
+                {{orderStatus}}
             </view>
-            <view class="line-content" style="margin-top:2.2vw">
-                <view class="text-title">
-                    所属店铺:
+        </view>
+        <view class="bottom">
+            <LoadingImg border="border-radius: 3vw;" src="{{src}}" class="img-border"/>
+            <view class="content">
+                <view class="id">
+                    # {{name}}
                 </view>
-                <view class="text-content">
-                    {{ order.store.name }}
+                <view class="line-content" style="margin-top:2.2vw">
+                    <view class="text-title">
+                        订单编号:
+                    </view>
+                    <view class="text-content">
+                        {{ order.id }}
+                    </view>
+                </view>
+                <view class="line-content" style="margin-top:2.2vw">
+                    <view class="text-title">
+                        所属店铺:
+                    </view>
+                    <view class="text-content">
+                        {{ order.store.name }}
+                    </view>
                 </view>
             </view>
         </view>
     </view>
     <view class="pay">
-        <view wx:if="{{order.state === OrderState.WaitForPayment}}" class="continue-pay" bindtap="goToPay">
+        <view wx:if="{{order.state === 'WAIT_FOR_PAYMENT_NOT_PAY' || order.state === 'WAIT_FOR_PAYMENT_PAY_ERROR'}}"
+              class="continue-pay" bindtap="goToPay">
             继续支付
         </view>
     </view>

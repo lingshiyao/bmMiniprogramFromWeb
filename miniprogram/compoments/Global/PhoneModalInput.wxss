@@ -67,9 +67,11 @@
     margin-bottom: 6.8vw;
 }
 
-.input {
+.border {
+    display: flex;
+    align-items: center;
     width: 77.33333333333333vw;
-    height: 11.733333333333333vw;
+    height: 9.733333333333333vw;
     background: #EEEEEE;
     border-radius: 2.6666666666666665vw;
     border: 0vw;
@@ -78,6 +80,9 @@
     font-size: 3.466666666666667vw;
     font-weight: 400;
     color: #969696;
-    text-indent: 4vw;
     transition: all 0.2s ease 0s;
+}
+
+.input {
+    margin-left: 4vw;
 }

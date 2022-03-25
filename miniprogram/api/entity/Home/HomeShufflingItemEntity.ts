@@ -1,4 +1,4 @@
-import {LanguageConfig} from "../../language/LanguageConfig";
+import {LanguageConfig} from "../../language/LanguageConfig"
 
 export class HomeShufflingItemEntity {
 
@@ -22,5 +22,4 @@ export class HomeShufflingItemEntity {
         self.id = id;
         return self;
     }
-
 }

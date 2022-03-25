@@ -1,12 +1,6 @@
-import {ImgPath} from '../../../Public/ImgPath'
+import {ImgPathUtils} from "../../utils/ImgPathUtils";
 
-const btn_add = ImgPath.getImgPath('btn_add');
-
-export class Upload {
-    public filename: string = "";
-    public content_type: string = "";
-    public content: any = null;
-}
+const btn_add = ImgPathUtils.getImgPath('btn_add');
 
 export class UploadingEntity {
 
@@ -17,11 +11,11 @@ export class UploadingEntity {
     public dataImg: string = "";
     public btn_add: string = btn_add;
 
-    public static init(title: string, details: string, imageSize:number = 0): UploadingEntity {
+    public static init(title: string, details: string, imageSize: number = 0): UploadingEntity {
         const self = new UploadingEntity();
         self.title = title;
-        self.details = details;   
-        self.imageSize = imageSize;     
+        self.details = details;
+        self.imageSize = imageSize;
         return self;
     }
 }

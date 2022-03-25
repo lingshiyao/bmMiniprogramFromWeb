@@ -1,4 +1,3 @@
-
 export class UserEntity {
     public id: string = "";                     /// 编号
     public username: string = "";               /// 用户名
@@ -8,7 +7,7 @@ export class UserEntity {
     public lastLoginAt: string = "";            /// 最后一次登录时间
     public createdOnChain: boolean = false;         /// 是否已上链
 
-    public static init (id: string, username: string, role: string, banned: string, signupAt:string, lastLoginAt: string, createdOnChain: boolean): UserEntity {
+    public static init(id: string, username: string, role: string, banned: string, signupAt: string, lastLoginAt: string, createdOnChain: boolean): UserEntity {
         const self = new UserEntity();
         self.id = id;
         self.username = username;

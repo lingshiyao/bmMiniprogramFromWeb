@@ -1,4 +1,3 @@
-
 export class StorageUtils {
 
     public static setStorage(key: string, value: any) {

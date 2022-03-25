@@ -1,46 +1,42 @@
+import {OrderFilter, UserDetail} from "../../api/net/gql/graphql";
+import {UserSet} from "../../api/storage/UserSet";
 import {request} from "../../api/Api";
-import {OrderState, UserDetail} from "../../api/gql/graphql";
-import {UserSet} from "../../api/UserSet";
+
+const ARRAY: any = [];
 
 Component({
-    properties: {
-        orderFilter: {
-            type: String, value: OrderState.All
-        }
-    }, data: {
-        order: []
-    }, methods: {
-        ///// 进入info
-        goToInfo(event: any) {
-            const index = event.currentTarget.dataset.index;
-            wx.navigateTo({
-                url: `/pages/PhoneInfoPage?id=${this.data.order[index].art.id}&sid=${this.data.order[index].store.id}`
-            });
-        }, async init() {
+    data: {order: ARRAY}, methods: {
+        async init() {
             const userDetail: UserDetail | null = await UserSet.getUserInfoIfFailedGoLogin();
             if (!userDetail) return;
-            let filter = OrderState.All;
-            if (this.properties.orderFilter == OrderState.All) {
-                filter = OrderState.All;
-            } else if (this.properties.orderFilter == OrderState.WaitForConfirm) {
-                filter = OrderState.WaitForConfirm;
-            } else if (this.properties.orderFilter == OrderState.Success) {
-                filter = OrderState.Success;
-            } else if (this.properties.orderFilter == OrderState.Failed) {
-                filter = OrderState.Failed;
+            let _filter;
+            if (this.properties.orderFilter === 'CLOSED') {
+                _filter = OrderFilter.Closed;
+            } else if (this.properties.orderFilter === 'SUCCESS') {
+                _filter = OrderFilter.Success;
+            } else if (this.properties.orderFilter === 'WAIT_FOR_PAYMENT') {
+                _filter = OrderFilter.WaitForPayment;
+            } else if (this.properties.orderFilter === 'WAIT_FOR_TRANSACTION') {
+                _filter = OrderFilter.WaitForTransaction;
+            } else if (this.properties.orderFilter === 'REFUND') {
+                _filter = OrderFilter.Refund
             }
-            const ordersResult = await request.orders({
-                filter: filter, pageIndex: 0, pageSize: 1000, userId: userDetail.user.id
-            }, true);
+            let queryRootOrdersArgs: any = {
+                pageIndex: 0, pageSize: 1000
+            }
+            if (this.properties.orderFilter && this.properties.orderFilter != "") {
+                queryRootOrdersArgs['filter'] = _filter
+            }
+            const ordersResult = await request.orders(queryRootOrdersArgs, true);
             if (ordersResult == null) return;
             this.setData({
                 'order': ordersResult.list
-            })
-        },
-    }, ready() {
-        this.init()
+            });
+        }
+    }, properties: {orderFilter: {type: String, value: ""}}, ready() {
+        this.init();
     }, observers: {
-        'orderFilter': function (val) {
+        'orderFilter': function () {
             this.init();
         }
     }

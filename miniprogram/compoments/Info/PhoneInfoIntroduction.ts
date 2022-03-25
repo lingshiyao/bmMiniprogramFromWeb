@@ -1,10 +1,8 @@
 Component({
-    properties: {
+    data: {}, methods: {}, properties: {
         intr: {
-            type: String,
-            value: ""
+            type: String, value: ""
         }
-    },
-    data: {},
-    methods: {}
+    }, ready() {
+    }, observers: {}
 });

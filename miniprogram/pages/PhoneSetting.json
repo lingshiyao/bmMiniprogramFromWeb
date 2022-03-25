@@ -1,7 +1,8 @@
 {
-  "component": true,
   "navigationBarTitleText": "设置",
+  "component": true,
   "usingComponents": {
-    "PhoneModalInput": "../compoments/Global/PhoneModalInput"
+    "PhoneModalInput": "/compoments/Global/PhoneModalInput",
+    "LoadingImg": "/compoments/Global/LoadingImg"
   }
 }

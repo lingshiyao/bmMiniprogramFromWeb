@@ -1,99 +1,99 @@
 
 .creation {
-  background: #EEEEEE;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 8vw;
-  min-height: 80vh;
+    background: #EEEEEE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8vw;
+    min-height: 80vh;
 }
 
 .logo {
-  width: 28.53vw;
-  height: 9.33vw;
-  margin-left: 4vw;
+    width: 28.53vw;
+    height: 9.33vw;
+    margin-left: 4vw;
 }
 
 .banner {
-  display: flex;
-  width: 100%;
-  margin-top: 2.53vw;
+    display: flex;
+    width: 100%;
+    margin-top: 2.53vw;
 }
 
 .input {
-  margin-left: 4.8vw;
+    margin-left: 4.8vw;
 }
 
 .create-collection {
-  width: 92vw;
-  height: 51.73vw;
-  background: #0083FF;
-  border-radius: 2.66vw;
-  margin-top: 2.4vw;
-  display: flex;
-  align-items: center;
+    width: 92vw;
+    height: 51.73vw;
+    background: #0083FF;
+    border-radius: 2.66vw;
+    margin-top: 2.4vw;
+    display: flex;
+    align-items: center;
 }
 
 .left {
-  display: flex;
-  flex-direction: column;
-  margin-left: 4vw;
+    display: flex;
+    flex-direction: column;
+    margin-left: 4vw;
 }
 
 .create-item {
-  width: 92vw;
-  height: 51.72vw;
-  background: #EB5D47;
-  border-radius: 2.66vw;
-  margin-top: 4vw;
-  display: flex;
-  align-items: center;
+    width: 92vw;
+    height: 51.72vw;
+    background: #EB5D47;
+    border-radius: 2.66vw;
+    margin-top: 4vw;
+    display: flex;
+    align-items: center;
 }
 
 .store-icon {
-  width: 44.13vw;
-  height: 35.06vw;
-  margin-left: 5.06vw;
-  //background: #1E1E1E;
+    width: 44.13vw;
+    height: 35.06vw;
+    margin-left: 5.06vw;
 }
 
 .title1 {
-  font-size: 6.4vw;
-  font-weight: bold;
-  color: #FFFFFF;
+    font-size: 6.4vw;
+    font-weight: bold;
+    color: #FFFFFF;
 }
 
 .title2 {
-  font-size: 4vw;
-  font-weight: 400;
-  color: #FFFFFF;
-  margin-top: 2.8vw;
+    font-size: 4vw;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-top: 2.8vw;
 }
 
 .btn {
-  width: 18.66vw;
-  height: 8vw;
-  background: #FFFFFF;
-  box-shadow: 0vw 0.4vw 4.26vw 0vw rgba(0, 0, 0, 0.2);
-  border-radius: 4vw;
-  font-size: 2.93vw;
-  font-weight: 400;
-  color: #0083FF;
-  line-height: 8vw;
-  text-align: center;
-  margin-top: 11.6vw;
+    width: 18.66vw;
+    height: 8vw;
+    background: #FFFFFF;
+    box-shadow: 0vw 0.4vw 4.26vw 0vw rgba(0, 0, 0, 0.2);
+    border-radius: 4vw;
+    font-size: 2.93vw;
+    font-weight: 400;
+    color: #0083FF;
+    line-height: 8vw;
+    text-align: center;
+    margin-top: 11.6vw;
 }
 
 .btn2 {
-  width: 18.66vw;
-  height: 8vw;
-  background: #FFFFFF;
-  box-shadow: 0vw 0.4vw 4.26vw 0vw rgba(0, 0, 0, 0.2);
-  border-radius: 4vw;
-  font-size: 2.93vw;
-  font-weight: 400;
-  color: #EB5D47;
-  line-height: 8vw;
-  text-align: center;
-  margin-top: 11.6vw;
+    width: 18.66vw;
+    height: 8vw;
+    background: #FFFFFF;
+    box-shadow: 0vw 0.4vw 4.26vw 0vw rgba(0, 0, 0, 0.2);
+    border-radius: 4vw;
+    font-size: 2.93vw;
+    font-weight: 400;
+    color: #EB5D47;
+    line-height: 8vw;
+    text-align: center;
+    margin-top: 11.6vw;
 }
+

@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "数字火星",
+  "component": true,
   "usingComponents": {
     "FootMsg": "/compoments/Tabbar/FootMsg",
     "PhoneMy": "/compoments/My/PhoneMy",

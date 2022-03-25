@@ -16,16 +16,19 @@
     "noUnusedParameters": true,
     "strict": true,
     "strictPropertyInitialization": true,
-    "lib": ["ES2020"],
+    "lib": [
+      "ES2020"
+    ],
     "typeRoots": [
       "./typings"
-    ],
+    ]
     // 
     // "emitDecoratorMetadata": true,
   },
   "include": [
-    "./**/*.ts"
-, "graphqlmove.py"  ],
+    "./**/*.ts",
+    "graphqlmove.py"
+  ],
   "exclude": [
     "node_modules"
   ]

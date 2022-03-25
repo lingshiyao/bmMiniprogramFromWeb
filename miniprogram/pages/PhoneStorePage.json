@@ -4,6 +4,7 @@
   "usingComponents": {
     "PhoneStoreBanner": "/compoments/Store/PhoneStoreBanner",
     "PhoneStoreArtList": "/compoments/Store/PhoneStoreArtList",
-    "PhoneBlindBox": "/compoments/Store/PhoneBlindBox"
+    "PhoneBlindBox": "/compoments/Store/PhoneBlindBox",
+    "PhoneBlindBottom": "/compoments/Store/PhoneBlindBottom"
   }
 }

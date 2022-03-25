@@ -1,23 +1,20 @@
 <view>
-<!--    TODO -->
-<!--    <transition enter-active-class="animated fadeIn faster" leave-active-class="animated fadeOut faster">-->
-        <view wx:if="{{isShow}}" class="bg" bindtap="cancel"></view>
-<!--    </transition>-->
-<!--    TODO-->
-<!--    <transition enter-active-class="animated bounceInDown faster" leave-active-class="animated bounceOutUp faster">-->
-        <view wx:if="{{isShow}}" class="pos">
-            <view class="tips">
-                <view class="title">
-                    {{ modalInputParam.title }}
-                </view>
-                <view wx:for="{{modalInputParam.inputPlaceholder}}" wx:for-item="item" wx:for-index="index" wx:key="unique">
-                    <input data-index="{{index}}" bindinput="myInput" value="{{inputs[index]}}" placeholder="{{item}}" class="input"
-                           style="margin-top:3.33vw"></input>
-                </view>
-                <view class="close" bindtap="submit">
-                    {{ modalInputParam.submitContent }}
+    <view wx:if="{{isShow}}" class="bg" bindtap="cancel"></view>
+    <view wx:if="{{isShow}}" class="pos">
+        <view class="tips">
+            <view class="title">
+                {{ modalInputParam.title }}
+            </view>
+            <view wx:for="{{modalInputParam.inputPlaceholder}}" wx:for-item="item" wx:for-index="index" wx:key="unique">
+                <view class="border" style="margin-top:4.4vw">
+                    <input type="{{type[index]}}" data-index="{{index}}" bindinput="myInput" value="{{inputs[index]}}"
+                           placeholder="{{item}}"
+                           class="input"></input>
                 </view>
             </view>
+            <view class="close" bindtap="submit">
+                {{ modalInputParam.submitContent }}
+            </view>
         </view>
-<!--    </transition>-->
+    </view>
 </view>

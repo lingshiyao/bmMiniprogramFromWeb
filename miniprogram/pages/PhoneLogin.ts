@@ -1,6 +1,6 @@
-import {PicCDNUtils} from "../api/netWorking/PicCDNUtils";
-import {LoginInfo, UserDetail} from "../api/gql/graphql";
-import {UserSet} from "../api/UserSet";
+import {PicCDNUtils} from "../api/net/PicCDNUtils";
+import {LoginInfo, UserDetail} from "../api/net/gql/graphql";
+import {UserSet} from "../api/storage/UserSet";
 import {StorageUtils} from "../api/utils/StorageUtils";
 import {AppConstant} from "../api/AppConstant";
 import {request} from "../api/Api";
@@ -36,15 +36,18 @@ Page({
     },
 
     async register() {
-        const passwords: Array<string> | null = await this.data.phoneModalInput.show({
-            inputPlaceholder: ["账号", "密码", "确认密码"], submitContent: "确定", title: "注册", defaultValue: ["", "", ""]
+        const passwords: any = await this.data.phoneModalInput.show({
+            inputPlaceholder: ["账号", "密码", "确认密码"],
+            submitContent: "确定",
+            title: "注册",
+            defaultValue: ["", "", ""],
+            isPwd: [false, true, true]
         });
         if (passwords === null) return;
         await wx.showLoading({title: ""})
         const canSubmit = (passwords: Array<string>) => {
             return passwords[1] != "" && passwords[2] != "" && passwords[1] == passwords[2] && passwords[0] != "";
         }
-        console.log(passwords)
         if (canSubmit(passwords)) {
             const signup = await request.signup({
                 input: {
@@ -65,6 +68,12 @@ Page({
                 await wx.showModal({
                     title: '提示', content: '注册成功', showCancel: false
                 })
+                // 自动登录
+                this.setData({
+                    name: passwords[0],
+                    pwd: passwords[1]
+                })
+                this.clickLogin();
             }
         } else {
             await wx.hideLoading()
@@ -88,7 +97,7 @@ Page({
 
     async clickLogin() {
         if (!this.canSubmit()) return;
-        let loginInfo: LoginInfo = await request.login({username: this.data.name, userpass: this.data.pwd});
+        let loginInfo: LoginInfo = await request.signin({username: this.data.name, userpass: this.data.pwd});
         if (loginInfo == null) {
             await wx.showModal({
                 title: '提示', content: '密码有误，请确认后重新输入', showCancel: false

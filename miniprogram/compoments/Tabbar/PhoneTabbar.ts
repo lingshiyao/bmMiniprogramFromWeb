@@ -4,6 +4,9 @@ Component({
     properties: {
         tabbarData: {
             type: Array, value: new Array<PhoneTabbarEntity>()
+        },
+        safeHeight: {
+            type: String, value: "padding-bottom: 0vw;"
         }
     }, data: {
         data: new Array<PhoneTabbarEntity>()
@@ -30,7 +33,8 @@ Component({
             })
         }
     }, ready: function () {
-        // FIXME
-        // data.value = props.tabbarData;
+        this.setData({
+            'data': this.properties.tabbarData
+        })
     },
 });

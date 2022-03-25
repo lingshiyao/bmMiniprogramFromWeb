@@ -7,12 +7,13 @@
 
 .qrcode-weixin {
     margin-top: 1vw;
-    width: 25vw;
+    width: 30vw;
     height: 10vw;
     line-height: 10vw;
-    text-align: center;
+    text-align: left;
     vertical-align: middle;
-    background-image: url("../assets/pic_frame_selected.png");
+    /*FIXME*/
+    /*background-image: url("../assets/pic_frame_selected.png");*/
 }
 
 .weixn-img {

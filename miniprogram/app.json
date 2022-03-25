@@ -1,13 +1,14 @@
 {
   "pages": [
     "pages/PhoneApp",
-    "pages/PhoneVHTML",
-    "pages/PhoneStorePage",
-    "pages/PhoneInfoPage",
-    "pages/PhoneChangePwd",
+    "pages/TestPage",
     "pages/PhoneLogin",
     "pages/PhoneSetting",
-    "pages/template/template"
+    "pages/PhonePayPage",
+    "pages/PhoneStorePage",
+    "pages/PhoneChangePwd",
+    "pages/PhoneInfoPage",
+    "pages/PhoneVHTML"
   ],
   "window": {
     "backgroundTextStyle": "light",

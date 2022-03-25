@@ -1,48 +1,42 @@
-import {request} from "../../api/Api";
 import {MyCollectionsItemEntity} from "../../api/entity/My/MyCollectionsItemEntity";
-import {Store, UserDetail} from "../../api/gql/graphql";
-import {ImgPath} from "../../api/ImgPath";
-import {UserSet} from "../../api/UserSet";
+import {PagedStores, Store, UserDetail} from "../../api/net/gql/graphql";
+import {UserSet} from "../../api/storage/UserSet";
+import {ImgPathUtils} from "../../api/utils/ImgPathUtils";
+import {request} from "../../api/Api";
+
+const ARRAY: any = [];
 
 Component({
-    properties: {}, data: {
-        lst: []
-    }, methods: {
-        goToStore(index: number) {
-            // TODO 未验证
-            // router.push({
-            //   path: "/phone/store",
-            //   query: {
-            //     id: lst.value[index].id
-            //   }
-            // })
-            wx.navigateTo({
-                url: `/pages/PhoneStorePage?id=${this.data.lst[index].id}`,
-            })
-        }, async init() {
-            let userDetail: UserDetail = UserSet.getUserInfoIfFailedGoLogin();
+    data: {lst: ARRAY}, methods: {
+        async init() {
+            let userDetail: UserDetail | null = await UserSet.getUserInfoIfFailedGoLogin();
             if (!userDetail) return;
-            const stores = await request.stores({
-                pageIndex: 0, owner: userDetail.userExt.address
+            const stores: PagedStores = await request.stores({
+                pageIndex: 0, owner: userDetail.userExt.address, pageSize: 1000
             });
             if (stores == null) return;
             const store: Array<Store> = stores.list;
             store.forEach((item: Store) => {
                 const item_: MyCollectionsItemEntity = new MyCollectionsItemEntity();
-                item_.banner = ImgPath.getSBanner(item.id);
-                item_.headerImg = ImgPath.getSIcon(item.id);
+                item_.banner = ImgPathUtils.getSBanner(item.id);
+                item_.headerImg = ImgPathUtils.getSIcon(item.id);
                 item_.name = item.name;
                 item_.id = item.id;
                 item_.description = item.description;
                 item_.artCount = item.artCount.toString();
-                const lstT = this.data.lst;
-                lstT.push(item_);
+                let lst: any = this.data.lst;
+                lst.push(item_);
                 this.setData({
-                    'lst': lstT
-                })
+                    'lst': lst
+                });
             });
+        }, goToStore(event: any) {
+            const index = parseInt(event.currentTarget.dataset.index.toString());
+            wx.navigateTo({
+                url: `/pages/PhoneStorePage?id=${this.data.lst[index].id}`,
+            })
         }
-    }, ready() {
+    }, properties: {}, ready() {
         this.init();
-    }
+    }, observers: {}
 });

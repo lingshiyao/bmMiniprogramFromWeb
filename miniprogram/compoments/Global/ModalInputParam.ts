@@ -1,3 +1,3 @@
 export type ModalInputParam = {
-    title: string; submitContent: string; inputPlaceholder: Array<string>; defaultValue: Array<string>;
-}
+    isPwd: Array<boolean>; title: string; submitContent: string; inputPlaceholder: Array<string>; defaultValue: Array<string>;
+};

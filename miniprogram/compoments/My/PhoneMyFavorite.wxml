@@ -4,7 +4,7 @@
         <block wx:for="{{favList}}" wx:for-item="item" wx:for-index="index" wx:key="unique">
             <PhoneStoreItem data="{{item}}"
                             class="animate__animated animate__bounceIn animate__faster" bindtap="goToInfo"
-                            data-index="index"></PhoneStoreItem>
+                            data-index="{{index}}"></PhoneStoreItem>
         </block>
     </view>
 </view>

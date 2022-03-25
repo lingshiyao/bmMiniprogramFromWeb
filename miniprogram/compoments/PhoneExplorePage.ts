@@ -1,6 +1,6 @@
 import {request} from "../api/Api";
 import {MyCollectionsItemEntity} from "../api/entity/My/MyCollectionsItemEntity";
-import {ImgPath} from "../api/ImgPath";
+import {ImgPathUtils} from "../api/utils/ImgPathUtils";
 import {SelectToolBarEntity} from "./Explore/SelectToolBarEntity";
 
 Component({
@@ -52,14 +52,7 @@ Component({
          *  进入商店
          **/
         goToStore(event: any) {
-            // TODO 未验证
-            // router.push({
-            //     path: "/phone/store",
-            //     query: {
-            //         id: exploreItemData.value[index].id
-            //     }
-            // });
-            const index = event.currentTarget.dataset.index;
+            const index = parseInt(event.currentTarget.dataset.index.toString());
             wx.navigateTo({
                 url: `/pages/PhoneStorePage?id=${this.data.exploreItemData[index].id}`,
             })
@@ -76,13 +69,13 @@ Component({
                         const element = stores.list[key];
 
                         // banner
-                        const banner = ImgPath.getSBanner(element.id);
+                        const banner = ImgPathUtils.getSBanner(element.id);
 
                         // icon
-                        const icon = ImgPath.getSIcon(element.id);
+                        const icon = ImgPathUtils.getSIcon(element.id);
 
                         // 初始化 实体
-                        const data = MyCollectionsItemEntity.init(banner, icon, element.name, element.description, element.artCount, element.id);
+                        const data = MyCollectionsItemEntity.init(banner, icon, element.name, element.description, element.artCount.toString(), element.id);
 
                         exploreItemDataT.push(data);
                     }

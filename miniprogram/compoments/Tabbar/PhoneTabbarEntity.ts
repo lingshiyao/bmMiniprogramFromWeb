@@ -1,7 +1,5 @@
-
-
 export class PhoneTabbarEntity {
-    
+
     public img: string = "";
 
     public select_img: string = "";

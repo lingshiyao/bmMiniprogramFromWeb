@@ -1,22 +1,15 @@
-<view>
+<view style="padding-top:1vw">
     <view class="phone-nft-info">
         <view class="img-supply">
-            <image show-menu-by-longpress lazy-load mode="aspectFill" class="img-supply-img" src="{{src}}"/>
+            <image show-menu-by-longpress lazy-load class="img-supply-img" src="{{src}}"
+                   style="width:3vw;height:4vw"></image>
             <view class="img-supply-title">
                 限量 {{ nft.maxSupply }} 份
             </view>
         </view>
-
-        <!--        // TODO 未验证-->
-        <!--        <view class="phone-nft-info-img" style="position: relative;">-->
-        <!--            <image id="nft_banner_img" style="position: absolute;"-->
-        <!--                   class="animate__animated animate__bounceIn animate__faster" src="{{nft.imgs.headerImg}}" />-->
-        <!--        </view>-->
-        <view class="phone-nft-info-img" style="position: relative;">
-            <image show-menu-by-longpress lazy-load mode="aspectFill" id="nft_banner_img" style="position: absolute;"
-                   class="phone-nft-info-img animate__animated animate__bounceIn animate__faster"
-                   src="{{nft.imgs.headerImg}}"/>
-        </view>
+        <image show-menu-by-longpress lazy-load id="nft_banner_img" style="position: absolute;"
+               class="animate__animated animate__bounceIn animate__faster phone-nft-info-img"
+               src="{{nft.imgs.headerImg}}"></image>
     </view>
     <view class="phone-nft-info-price-background">
         <view>
@@ -35,7 +28,7 @@
                 {{ nft.artName }}
             </view>
         </view>
-        <view style="margin-top: 2vw;">
+        <view style="margin-top: 2vw; display:flex;">
             <view class="phone-nft-info-pj-number">
                 店铺名称：
             </view>
@@ -43,7 +36,8 @@
                   style="margin: 0px; color: #F99D1A; font-size: 4vw; font-weight: bold">
                 {{ nft.storeName }}
             </view>
-            <image show-menu-by-longpress lazy-load mode="aspectFill" style="margin-left: 1vw;width: 2.93vw;height: 3.2vw;" src="{{src1}}"/>
+            <image show-menu-by-longpress lazy-load style="margin-left: 1vw; width:3.5vw;height:3.5vw;"
+                   src="{{src1}}"></image>
         </view>
     </view>
 </view>

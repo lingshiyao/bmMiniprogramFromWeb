@@ -1,5 +1,4 @@
 
-
 .store-banner {
     text-align: center;
 }
@@ -9,6 +8,13 @@
     height: 33.4vw;
     background: #ffaa01;
     overflow: hidden;
+}
+
+.store-banner-header-img {
+    width: 22vw;
+    height: 22vw;
+    border-radius: 50%;
+    background: #ffaa01;
 }
 
 .store-banner-header-img-box {

@@ -1,22 +1,28 @@
+const debug = false;
+
 Component({
     properties: {
         src: {
-            type: String,
-            value: "",
-        }
-    },
-    data: {
-        loading:true
-    },
-    methods: {
-        onLoadingSuccess() {
-            this.setData({
-                'loading': false,
-            })
-            console.log("load success")
+            type: String, value: "",
         },
-        onLoadingError() {
-            console.log("error")
+        border: {
+            type: String, value: ""
+        }
+    }, data: {
+        loading: true,
+        imgClass: "hide",
+    }, ready() {
+    }, methods: {
+        onLoadingSuccess() {
+            if (!debug) {
+                this.setData({
+                    'loading': false,
+                })
+                this.setData({
+                    'imgClass': "img animate__animated animate__bounceIn animate__faster"
+                })
+            }
+        }, onLoadingError() {
         }
     }
 });

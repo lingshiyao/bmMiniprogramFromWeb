@@ -1,56 +1,3 @@
-
-export type LanguageKey = {
-
-    ////////////////////////////////  NAV
-    NAV_TITLE_HOME: string;
-
-    NAV_TITLE_STATS: string;
-
-    NAV_TITLE_CREATE: string;
-
-    NAV_TITLE_MY: string;
-
-    NAV_TITLE_LOG_IN: string;
-
-    NAV_TITLE_SIGN_UP: string;
-
-    NAV_TITLE_CREATE_COLLECTION: string;
-
-    NAV_TITLE_CREATE_ITEM: string;
-
-    ////////////////////////////////  home
-    /***** banner *****/
-    HOME_BANNER_LEFT_TITLE: string;
-
-    HOME_BANNER_LEFT_TITLE_CONTENT: string;
-
-    HOME_BANNER_LEFT_NEWS: string;
-
-    HOME_BANNER_LEFT_EXPLORE: string;
-
-    HOME_BANNER_LEFT_CREATE: string;
-
-    /***** Notable Dropship *****/
-    HOME_SHUFFLE_TITLE: string;
-
-    HOME_SHUFFLE_LIVE: string;
-
-    /***** Browse by category *****/
-    HOME_BROWSE_CATEGORY: string;
-
-    HOME_BROWSE_ART: string;
-
-    HOME_BROWSE_MUSIC: string;
-
-    HOME_BROWSE_DOMAIN_NAMES: string;
-
-    HOME_BROWSE_VIRTUAL_WORLDS: string;
-
-    HOME_BROWSE_TRADING_CARDS: string;
-
-    HOME_BROWSE_TRADING_COLLECTIBLES: string;
-}
-
 export class Language {
 
     public NAV_TITLE_HOME: string = "首页";
@@ -210,5 +157,5 @@ export class Language {
     public TOP_ITEM_HEADER_OWNERS: string = "";
 
     public TOP_ITEM_HEADER_ASSETS: string = "";
-    
+
 }

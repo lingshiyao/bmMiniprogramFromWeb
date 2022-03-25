@@ -12,7 +12,7 @@
                     立即创建
                 </view>
             </view>
-            <image  show-menu-by-longpress lazy-load src="{{storeUrl}}" class="store-icon"></image>
+            <image show-menu-by-longpress lazy-load src="{{storeUrl}}" class="store-icon"></image>
         </view>
         <view class="create-item animate__animated animate__fadeIn animate__faster">
             <view class="left">

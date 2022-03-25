@@ -1,25 +1,9 @@
 <view class="phone-my-explore-item">
-
-<!--    // TODO 未验证-->
-<!--    <view class="phone-my-explore-item-background-img-box">-->
-<!--        <image class="phone-my-explore-item-background-img" id="{{'phone_my_explore_img' + data.id}}"-->
-<!--               src="{{data.banner}}"></image>-->
-<!--    </view>-->
-    <view class="phone-my-explore-item-background-img-box">
-        <image show-menu-by-longpress lazy-load mode="aspectFill" class="phone-my-explore-item-background-img-box" id="{{'phone_my_explore_img' + data.id}}"
-               src="{{data.banner}}"></image>
-    </view>
-
-
-<!--    // TODO 未验证-->
-<!--    <view class="phone-my-explore-item-header-img-box">-->
-<!--        <image id="{{'phone_my_explore_header_img' + data.id}}" src="{{data.headerImg}}"></image>-->
-<!--    </view>-->
-    <view class="phone-my-explore-item-header-img-box">
-        <image show-menu-by-longpress lazy-load mode="aspectFill" class="phone-my-explore-item-header-img-box"  id="{{'phone_my_explore_header_img' + data.id}}" src="{{data.headerImg}}"></image>
-    </view>
-
-
+    <image mode="aspectFill" show-menu-by-longpress lazy-load class="phone-my-explore-item-background-img-box"
+           id="{{'phone_my_explore_img' + data.id}}"
+           src="{{data.banner}}"></image>
+    <image mode="aspectFill" class="phone-my-explore-item-header-img-box" show-menu-by-longpress lazy-load
+           src="{{data.headerImg}}"></image>
     <view class="phone-my-explore-item-title">
         {{ data.name }}
     </view>

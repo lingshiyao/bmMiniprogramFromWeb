@@ -1,6 +1,7 @@
-import {ImgPath} from "../api/ImgPath";
 import {PhoneTabbarEntity} from "../compoments/Tabbar/PhoneTabbarEntity";
-import {UserSet} from "../api/UserSet";
+import {UserSet} from "../api/storage/UserSet";
+import {PicCDNUtils} from "../api/net/PicCDNUtils";
+import { Utils } from "../api/utils/Utils";
 
 const NULL: any = null;
 
@@ -9,111 +10,132 @@ Page({
         showViews: new Array<Boolean>(),
         tabbarData: new Array<PhoneTabbarEntity>(),
         toolsIndex: 0,
-        options: NULL
+        options: NULL,
+        bottomSafe: "",
     },
 
     onLoad(options) {
         this.setData({
             'options': options
         })
-        // 设置默认点击 tabbar
         this.createdTabbarData();
         this.setSelectTabbarItem();
-//         FIXME
-//   weiXinPayInit();
+
+        console.log(Utils.getBottomSafeAreaRpxHeight());
+        this.setData({
+            'bottomSafe': `padding-bottom: ${Utils.getBottomSafeAreaPxHeight() * 0.7}px;`
+        })
     },
 
     setSelectTabbarItem() {
         const index = this.data.options.id;
         if (index) {
-            const showViewsT = [false, false, false, false, false];
-            showViewsT[Number(index)] = true;
             this.setData({
-                'showViews': showViewsT
-            })
-            const tabbarDataT = this.data.tabbarData;
-            tabbarDataT[Number(index)].isSelect = true;
+                'showViews': [false, false, false, false, false]
+            });
+
+            let showViews: any = this.data.showViews;
+            showViews[Number(index)] = true;
             this.setData({
-                'tabbarData': tabbarDataT
-            })
+                'showViews': showViews
+            });
+
+            let tabbarData: any = this.data.tabbarData;
+            tabbarData[Number(index)].isSelect = true;
+            this.setData({
+                'tabbarData': tabbarData
+            });
         } else {
+            let tabbarData: any = this.data.tabbarData;
+            tabbarData[0].isSelect = true;
             this.setData({
-                'showViews': [true, false, false, false, false]
-            })
-            const tabbarDataT = this.data.tabbarData;
-            tabbarDataT[0].isSelect = true;
+                'tabbarData': tabbarData
+            });
+
+            let showViews: any = [false, false, false, false, false];
+            showViews[0] = true;
             this.setData({
-                'tabbarData': tabbarDataT
-            })
+                'showViews': showViews
+            });
         }
+    }, createdTabbarData() {
+        let tabbarData: any = this.data.tabbarData;
+        tabbarData.push(PhoneTabbarEntity.init(
+            PicCDNUtils.getPicUrl("icon_work_normal.png", false),
+            PicCDNUtils.getPicUrl("icon_work_selected.png", false), "首页"));
+        tabbarData.push(PhoneTabbarEntity.init(
+            PicCDNUtils.getPicUrl("ic_sort_normal.png", false),
+            PicCDNUtils.getPicUrl("ic_sort_selected.png", false), "分类"));
+        tabbarData.push(PhoneTabbarEntity.init(
+            PicCDNUtils.getPicUrl("ic_creation_normal1.png", false),
+            PicCDNUtils.getPicUrl("ic_creation_selected1.png", false), "创作"));
+        tabbarData.push(PhoneTabbarEntity.init(
+            PicCDNUtils.getPicUrl("ic_mine_normal.png", false),
+            PicCDNUtils.getPicUrl("ic_mine_selected.png", false), "我的"));
+        this.setData({
+            'tabbarData': tabbarData
+        });
     },
 
-    /**
-     * 初始化 tabbar
-     */
-    createdTabbarData() {
-        const lst: Array<PhoneTabbarEntity> = new Array<PhoneTabbarEntity>();
-        lst.push(PhoneTabbarEntity.init(ImgPath.getImgPath('icon_work_normal'), ImgPath.getImgPath('icon_work_selected'), "首页"));
-        lst.push(PhoneTabbarEntity.init(ImgPath.getImgPath('ic_sort_normal'), ImgPath.getImgPath('ic_sort_selected'), "分类"));
-        lst.push(PhoneTabbarEntity.init(ImgPath.getImgPath('ic_creation_normal1'), ImgPath.getImgPath('ic_creation_selected1'), "创作"));
-        lst.push(PhoneTabbarEntity.init(ImgPath.getImgPath('ic_mine_normal'), ImgPath.getImgPath('ic_mine_selected'), "我的"));
-        this.setData({
-            tabbarData: lst
+    async taBarIndex(event: any) {
+        const index = parseInt(event.detail);
+        this._taBarIndex(index);
+        wx.pageScrollTo({
+            scrollTop: 0,
+            duration: 0,
+            selector: "#scroll-view"
         })
     },
 
     async _taBarIndex(index: number) {
         // FIXME
-        // //// 记录当前 index
         // router.replace({
-        //   query: {
-        //     id: index.toString()
-        //   }
+        //     query: {
+        //         id: index.toString()
+        //     }
         // });
         if (index === 3) {
-            //我的页面
-            if (await UserSet.getToken() == null) {
-                wx.navigateTo({
-                    url: '/pages/PhoneLogin',
-                })
-            }
+            await UserSet.getUserInfoIfFailedGoLogin();
         }
-        const showViewsT = [false, false, false, false, false];
-        showViewsT[index] = true;
+        let showViews: any = [false, false, false, false, false];
+        showViews[index] = true;
         this.setData({
-            'showViews': showViewsT
+            'showViews': showViews
+        });
+    }, goToExplore(event: any) {
+        const index = parseInt(event.detail);
+        wx.pageScrollTo({
+            scrollTop: 0,
+            duration: 0,
+            selector: "#scroll-view"
         })
-    },
-
-    async taBarIndex(event: any) {
-        const index = parseInt(event.detail);
-        this._taBarIndex(index)
-    },
-
-    goToExplore(event: any) {
-        const index = parseInt(event.detail);
-        if (index === 100) {    /// 进入创作
+        if (index === 100) {
             this._taBarIndex(2);
-            const tabbarDataT = this.data.tabbarData;
-            tabbarDataT[0].isSelect = false;
-            tabbarDataT[1].isSelect = false;
-            tabbarDataT[2].isSelect = true;
+            let tabbarData: any = this.data.tabbarData;
+            tabbarData[0].isSelect = false;
+            tabbarData[1].isSelect = false;
+            tabbarData[2].isSelect = true;
+            tabbarData[3].isSelect = false;
             this.setData({
-                'tabbarData': tabbarDataT
-            })
+                'tabbarData': tabbarData
+            });
             return;
+        } else {
+            this._taBarIndex(1);
+            let tabbarData: any = this.data.tabbarData;
+            tabbarData[0].isSelect = false;
+            tabbarData[1].isSelect = true;
+            tabbarData[2].isSelect = false;
+            tabbarData[3].isSelect = false;
+            this.setData({
+                'tabbarData': tabbarData
+            });
+            this.setData({
+                'toolsIndex': index
+            });
         }
-        this._taBarIndex(1);
-        const tabbarDataT = this.data.tabbarData;
-        tabbarDataT[0].isSelect = false;
-        tabbarDataT[1].isSelect = true;
-        this.setData({
-            'tabbarData': tabbarDataT, 'toolsIndex': index
-        })
-    },
-
-    goToVHtml(event: any) {
-        const index = parseInt(event.detail);
+    }, goToVHtml(event: any) {
+        const index = parseInt(event.detail.toString());
         switch (index) {
             case 1: {
                 wx.navigateTo({

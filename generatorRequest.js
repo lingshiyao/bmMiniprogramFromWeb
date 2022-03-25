@@ -95,7 +95,7 @@ const main = async () => {
         const parts1 = fileName.split(`\\`);
         const parts2 = parts1[parts1.length - 1].split(`.`);
         const name = parts2[0];
-        
+
         // const gqlFileName = `G.${capitalizeFirstLetter(name)}`;
         // const gqlFileName = `BestGql.${name}`;
         // TODO 使用中间层
@@ -110,12 +110,12 @@ const main = async () => {
             type = `G.MutationRoot`;
             param = `params: G.MutationRoot${capitalizeFirstLetter(name)}Args, needauth: boolean = false`
         }
-        if(ie - is == 0)
+        if (ie - is == 0)
             param = `needauth: boolean = false`
 
         code += `\n\tpublic async ${name}(${param}): Promise<${type}["${name}"]> {\n`;
         let retuen = `\t\treturn <${type}["${name}"]>await this.getRequestPromise(${gqlFileName}, params, needauth);`
-        if(ie - is == 0)
+        if (ie - is == 0)
             retuen = `\t\treturn <${type}["${name}"]>await this.getRequestPromise(${gqlFileName}, {}, needauth);`
         code += retuen;
         code += `\n\t}\n`;

@@ -5,18 +5,14 @@
                 用户头像
             </view>
             <view class="input-line">
-<!--                FIXME-->
 <!--                <input id="input_img" accept="image/*" class="file-ele" file-model="image" multiple="" name="image"-->
-<!--                       nv-file-select="" type="file" uploader="" @change="getImage" />-->
-
-<!--                // TODO 未验证-->
-<!--                <view class="header-box">-->
-<!--                    <image src="{{defaultUrl}}" class="header" id="settimg_header_img"></image>-->
-<!--                </view>-->
-                <view class="header-box">
-                    <image show-menu-by-longpress lazy-load mode="aspectFill" src="{{defaultUrl}}" class="header-box" id="settimg_header_img"></image>
-                </view>
-                <image show-menu-by-longpress lazy-load src="{{rightArrowUrl}}" class="right-arrow"></image>
+<!--                       nv-file-select="" type="file" uploader=""-->
+<!--                       :bindchange="getImage">-->
+<!--                </input>-->
+                <image src="{{defaultUrl}}" class="header-box"
+                       binderror="headerLoadFail" bindtap="chooseImg">
+                </image>
+                <image src="{{rightArrowUrl}}" class="right-arrow"></image>
             </view>
         </view>
         <view class="line" style="margin-top: 5.87vw;">
@@ -30,7 +26,7 @@
                 <view wx:else class="input-text-has">
                     {{ userDetail.user.username }}
                 </view>
-                <image show-menu-by-longpress lazy-load src="{{rightArrowUrl}}" class="right-arrow hidden"></image>
+                <image src="{{rightArrowUrl}}" class="right-arrow hidden"></image>
             </view>
         </view>
         <view class="line" style="margin-top: 10.27vw;" bindtap="changUserInfo">
@@ -45,7 +41,7 @@
                 <view wx:else class="input-text-has">
                     {{ userDetail.userExt.nickname }}
                 </view>
-                <image show-menu-by-longpress lazy-load src="{{rightArrowUrl}}" class="right-arrow"></image>
+                <image src="{{rightArrowUrl}}" class="right-arrow"></image>
             </view>
         </view>
         <view class="line" style="margin-top: 10.27vw;" bindtap="changUserInfo">
@@ -59,7 +55,7 @@
                 <view wx:else class="input-text-has">
                     {{ userDetail.userExt.intro }}
                 </view>
-                <image show-menu-by-longpress lazy-load src="{{rightArrowUrl}}" class="right-arrow"></image>
+                <image src="{{rightArrowUrl}}" class="right-arrow"></image>
             </view>
         </view>
         <view class="line" style="margin-top: 10.27vw;" bindtap="changUserInfo">
@@ -73,7 +69,7 @@
                 <view wx:else class="input-text-has">
                     {{ userDetail.userExt.email }}
                 </view>
-                <image show-menu-by-longpress lazy-load src="{{rightArrowUrl}}" class="right-arrow"></image>
+                <image src="{{rightArrowUrl}}" class="right-arrow"></image>
             </view>
         </view>
         <view class="line-h" style="margin-top: 6.67vw;"></view>
@@ -89,7 +85,7 @@
                 <view wx:else class="input-text-has">
                     {{ userDetail.userExt.address }}
                 </view>
-                <image show-menu-by-longpress lazy-load src="{{rightArrowUrl}}" class="right-arrow hidden"></image>
+                <image src="{{rightArrowUrl}}" class="right-arrow hidden"></image>
             </view>
         </view>
         <view class="line-h" style="margin-top: 6.67vw;"></view>
@@ -98,13 +94,12 @@
                 登录密码
             </view>
             <view class="input-line">
-                <image show-menu-by-longpress lazy-load src="{{rightArrowUrl}}" class="right-arrow"></image>
+                <image src="{{rightArrowUrl}}" class="right-arrow"></image>
             </view>
         </view>
         <view class="login-out" style="margin-top: 12.67vw;" bindtap="logout">
             退出登录
         </view>
     </view>
-
     <PhoneModalInput id="phoneModalInput"></PhoneModalInput>
 </view>

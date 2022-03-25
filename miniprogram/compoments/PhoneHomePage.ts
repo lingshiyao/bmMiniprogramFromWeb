@@ -3,7 +3,7 @@ import {HomeBannerRightEntity} from "../api/entity/Home/HomeBannerRightEntity";
 import {HomeBrowseEntity, HomeBrowseItemEntity} from "../api/entity/Home/HomeBrowseEntity";
 import {HomeShufflingItemEntity} from "../api/entity/Home/HomeShufflingItemEntity";
 import {HomeShufflingListEntity} from "../api/entity/Home/HomeShufflingListEntity";
-import {ImgPath} from "../api/ImgPath";
+import {ImgPathUtils} from "../api/utils/ImgPathUtils";
 
 Component({
     properties: {}, data: {
@@ -21,7 +21,9 @@ Component({
                 this.getBannerData(top.topArt);
                 this.getShufflingData(top.topStores);
             } else {
-                // Public.alertView.showAlertView("网络异常！");
+                wx.showToast({
+                    title: '网络异常！', icon: 'error', duration: 2000
+                })
             }
         },
 
@@ -33,10 +35,10 @@ Component({
             const homeBannerRightEntity = new HomeBannerRightEntity()
             homeBannerRightEntity.userName = top.stores[0].name;
             homeBannerRightEntity.itemName = top.name;
-            homeBannerRightEntity.bannerImgUrl = ImgPath.getMedia(top.id);
+            homeBannerRightEntity.bannerImgUrl = ImgPathUtils.getMedia(top.id);
             homeBannerRightEntity.url = top.id;
             homeBannerRightEntity.storeId = top.stores[0].id;
-            homeBannerRightEntity.userImg = ImgPath.getSIcon(top.stores[0].id);
+            homeBannerRightEntity.userImg = ImgPathUtils.getSIcon(top.stores[0].id);
             this.setData({
                 'bannerData': homeBannerRightEntity
             })
@@ -52,7 +54,7 @@ Component({
             for (const key in topStores) {
                 if (Object.prototype.hasOwnProperty.call(topStores, key)) {
                     const element = topStores[key];
-                    const temp = HomeShufflingItemEntity.init(ImgPath.getSIcon(element.id), element.name, element.description, element.id);
+                    const temp = HomeShufflingItemEntity.init(ImgPathUtils.getSIcon(element.id), element.name, element.description, element.id);
                     shufflingDataT.dataArray.push(temp);
                 }
             }
@@ -63,39 +65,28 @@ Component({
 
         goToStore(event: any) {
             const index = event.detail;
-            // FIXME
-            // goToPage("phone/store", shufflingData.value.dataArray[index].id);
+            this.goToPage("/pages/PhoneStorePage", this.data.shufflingData.dataArray[index].id);
         },
 
         bannerGoToPage(event: any) {
-            const index:number = parseInt(event.detail);
+            const index: number = parseInt(event.detail);
             switch (index) {
                 case 0:
                     // 进入 nft 详情
                     wx.navigateTo({
                         url: `/pages/PhoneInfoPage?id=${this.data.bannerData.url}&sid=${this.data.bannerData.storeId}`,
                     })
-                    // TODO 未验证
-                    // router.push({
-                    //     path: '/phone/info',
-                    //     query: {
-                    //         id: bannerData.value.url,
-                    //         sid: bannerData.value.storeId
-                    //     }
-                    // })
                     wx.navigateTo({
                         url: `/pages/PhoneInfoPage?id=${this.data.bannerData.url}&sid=${this.data.bannerData.storeId}`
                     })
                     break;
-                case 1:                 ////// 进入探索
+                case 1:
+                    ////// 进入探索
                     this.triggerEvent('goToExplore', 0);
-                    // TODO 未验证
-                    // this.goToExplore(0);
                     break;
-                case 2:                 ////// 进入创建
-                    // TODO 未验证
+                case 2:
+                    ////// 进入创建
                     this.triggerEvent('goToExplore', 100);
-                    // this.goToExplore(100);
                     break;
                 default:
                     break;
@@ -108,20 +99,15 @@ Component({
          * @param id 跳转id
          */
         goToPage(path: string, id?: string) {
-            // FIXME
-            // const l_path = `/${path.toLocaleLowerCase()}`
-            // if (id) {
-            //     router.push({
-            //         path: l_path,
-            //         query: {
-            //             id: id!
-            //         }
-            //     })
-            // } else {
-            //     router.push({
-            //         path: l_path,
-            //     })
-            // }
+            if (id) {
+                wx.navigateTo({
+                    url: `${path}?id=${id}`,
+                })
+            } else {
+                wx.navigateTo({
+                    url: `${path}`,
+                })
+            }
         },
 
         /**
@@ -131,21 +117,21 @@ Component({
         getCategoriesImg(name: string) {
             switch (name) {
                 case "艺术品":
-                    return ImgPath.getImgPath('pic_art');
+                    return ImgPathUtils.getImgPath('pic_art');
                 case "音乐":
-                    return ImgPath.getImgPath('pic_music');
+                    return ImgPathUtils.getImgPath('pic_music');
                 case "体育":
-                    return ImgPath.getImgPath('pic_sports');
+                    return ImgPathUtils.getImgPath('pic_sports');
                 case "元宇宙":
-                    return ImgPath.getImgPath('pic_virtualworlds');
+                    return ImgPathUtils.getImgPath('pic_virtualworlds');
                 case "交易卡":
-                    return ImgPath.getImgPath('pic_tradingcards');
+                    return ImgPathUtils.getImgPath('pic_tradingcards');
                 case "头像":
-                    return ImgPath.getImgPath('pic_collectibles');
+                    return ImgPathUtils.getImgPath('pic_collectibles');
                 default:
                     break;
             }
-            return ImgPath.getImgPath('pic_art');
+            return ImgPathUtils.getImgPath('pic_art');
         },
 
         /**
@@ -167,21 +153,12 @@ Component({
             this.setData({
                 'categoryData': categoryDataT
             })
-        },
-        goToExplore(index: number) {
+        }, gotoExplore(event: any) {
+            const index = event.detail;
             this.triggerEvent('goToExplore', index);
         }
-    },
-    ready() {
+    }, ready() {
         this.getTopData();
         this.getCategories();
     }
 });
-
-// TODO 未验证
-// const emits = defineEmits<{
-//     (el: "goToExplore", index: number): void
-// }>();
-//
-// const goToExplore = (index: number) => emits('goToExplore', index);
-//

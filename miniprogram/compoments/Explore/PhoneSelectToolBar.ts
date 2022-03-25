@@ -1,53 +1,43 @@
 import {SelectToolBarEntity} from "./SelectToolBarEntity";
 
 Component({
-    properties: {
-        data: {
-            type: Array,
-            value: new Array<SelectToolBarEntity>(),
-        }
-    },
-    data: {
-        dataEntity: new Array<SelectToolBarEntity>(),
-    },
-    methods: {
+    data: {dataEntity: new Array<SelectToolBarEntity>()}, methods: {
         tabberToolAction(event: any) {
-            const index = event.currentTarget.dataset.index;
+            const index = parseInt(event.currentTarget.dataset.index.toString());
             this.selectToolIndex(index);
-
-            const dataEntityT = this.data.dataEntity;
-            for (let i = 0; i < dataEntityT.length; i++) {
+            for (let i = 0; i < this.data.dataEntity.length; i++) {
                 if (i === index) {
-                    dataEntityT[i].isSelect = true;
+                    let dataEntity_8f045ad5: any = this.data.dataEntity;
+                    dataEntity_8f045ad5[i].isSelect = true;
+                    this.setData({
+                        'dataEntity': dataEntity_8f045ad5
+                    });
                 } else {
-                    dataEntityT[i].isSelect = false;
+                    let dataEntity_68eb6e5b: any = this.data.dataEntity;
+                    dataEntity_68eb6e5b[i].isSelect = false;
+                    this.setData({
+                        'dataEntity': dataEntity_68eb6e5b
+                    });
                 }
             }
-            this.setData({
-                'dataEntity': dataEntityT
-            })
-        },
-        selectToolIndex(index: number) {
+        }, selectToolIndex(index: number) {
             this.triggerEvent('selectToolIndex', index);
         }
-    },
-    ready() {
+    }, properties: {
+        data: {
+            type: Array, value: new Array<SelectToolBarEntity>()
+        }
+    }, ready() {
+        let dataEntity_2eff1da0: any = this.data.dataEntity;
+        dataEntity_2eff1da0 = this.properties.data;
         this.setData({
-            'dataEntity': this.properties.data
-        })
-    },
-    observers: {
+            'dataEntity': dataEntity_2eff1da0
+        });
+    }, observers: {
         'data': function (data) {
             this.setData({
                 'dataEntity': data
-            })
+            });
         }
     }
 });
-
-// TODO 未验证
-// const emits = defineEmits<{
-//     (el: "selectToolIndex", index: number): void
-// }>();
-//
-// const selectToolIndex = (index: number) => emits('selectToolIndex', index);

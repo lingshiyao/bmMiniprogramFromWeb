@@ -1,9 +1,7 @@
-import {ImgPath} from "../../api/ImgPath";
+import {ImgPathUtils} from "../../api/utils/ImgPathUtils";
 
 Component({
-    properties: {},
     data: {
-        src: ImgPath.getImgPath('pic_logo')
-    },
-    methods: {}
+        src: ImgPathUtils.getImgPath('pic_logo')
+    }, methods: {}, properties: {}, observers: {}
 });

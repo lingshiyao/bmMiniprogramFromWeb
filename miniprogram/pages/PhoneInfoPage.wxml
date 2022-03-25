@@ -1,11 +1,7 @@
 <view class="phone-info-page">
-    <!--    TODO 未验证-->
-    <!--    <phone-info-header nft="{{nft}}" @goToStore="goToStore"></phone-info-header>-->
     <PhoneInfoHeader nft="{{nft}}" bind:goToStore="goToStore"/>
-    <PhoneInfoAttrutie wx:if="{{(JSON.stringify(attributes) != '{}')}}" attributes="{{attributes}}"></PhoneInfoAttrutie>
+    <PhoneInfoAttrutie wx:if="{{(JSON.stringify(attributes) != '{}')}}"
+                       attributes="{{attributes}}"/>
     <PhoneInfoIntroduction intr="{{description}}"/>
     <PhoneInfoBottom nft="{{nft}}" bind:action="bottomAction"/>
-    <!--    TODO 用系统-->
-    <!--<phone-modal-loading ref="phoneModalLoading"></phone-modal-loading>-->
-    <!--<phone-modal-tips ref="phoneModalTips"></phone-modal-tips>-->
 </view>

@@ -1,77 +1,152 @@
-import {request} from "../api/Api";
 import {CollectBannerEntity} from "../api/entity/Collect/CollectBannerEntity";
 import {CollectCardDataEntity} from "../api/entity/Collect/CollectItemsListItemEntity";
-import {ImgPath} from "../api/ImgPath";
+import {PublicUtils} from "../api/utils/PublicUtils";
+import {UserSet} from "../api/storage/UserSet";
+import {request} from "../api/Api";
+import {ImgPathUtils} from "../api/utils/ImgPathUtils";
+import {weiXinPayInit} from "../api/net/WeiXinPay";
+import {TradeType} from "../api/net/gql/graphql";
+import {WXUtils} from "../api/utils/WXUtils";
+
+/////
+var openId: string | null = null;
 
 const NULL: any = null;
 
 Page({
     data: {
-        /**
-         * 店铺 艺术品 模型
-         */
+        phoneModalLoading: NULL,
+        phoneModalTips: NULL,
+        num: 1,
+        price: 0,
         pageIndex: 0,
-
-        /**
-         * banner 数据模型
-         */
         bannerData: new CollectBannerEntity(),
-
-        /**
-         * 店铺 艺术品 模型
-         */
         collectData: new Array<CollectCardDataEntity>(),
-
-        total: 0, options: NULL
-    }, onLoad(options) {
-        this.setData({
-            'options': options
-        })
-        this.getStoreInfo();
-        this.getStoreStat();
-        this.getStoreArts("", this.data.pageIndex);
-    },
-
-    /**
-     * 页面跳转
-     * @param path  跳转地址
-     * @param id    跳转id
-     * @param storeId
-     */
-    goToPage(path: string, id?: string, storeId?: string) {
+        total: 0,
+        options: NULL
+    }, async initOpenId() {
         // FIXME
-        // const l_path = `/${path.toLocaleLowerCase()}`
-        // if (id) {
-        //     router.push({
-        //         path: l_path,
-        //         query: {
-        //             id: id!,
-        //         }
-        //     })
-        //     if (storeId) {
-        //         router.push({
-        //             path: l_path,
-        //             query: {
-        //                 id: id!,
-        //                 sid: storeId!
-        //             }
-        //         })
-        //     }
-        // } else {
-        //     router.push({
-        //         path: l_path,
-        //     })
-        // }
+        // const wxCode = WxPay.getWxCode(window.location.href);
+        const login = await WXUtils.login();
+        const wxCode = login.code.toString();
+        if (wxCode) {
+            const wxJsapiOpenId = await request.wxJsapiOpenId2({code: wxCode});
+            if (wxJsapiOpenId) {
+                openId = wxJsapiOpenId.openid;
+            } else {
+                wx.showToast({
+                    title: '出错', icon: 'error', duration: 2000
+                })
+            }
+        }
+    }, goToPage(path: string, id?: string, storeId?: string) {
+        const l_path = `/${path}`;
+        if (id) {
+            if (storeId) {
+                wx.navigateTo({
+                    url: `${l_path}?id=${id}&sid=${storeId}`,
+                })
+            } else {
+                wx.navigateTo({
+                    url: `${l_path}?id=${id}`,
+                })
+            }
+        } else {
+            wx.navigateTo({
+                url: `${l_path}`,
+            })
+        }
     }, getPage(index: string) {
         this.getStoreArts("", Number(index) - 1);
-    },
+    }, async getStoreInfo() {
+        const storeId = this.data.options.id;
+        const store = await request.store({storeId: <string>storeId});
+        if (store) {
+            let bannerData_598de07a: any = this.data.bannerData;
+            bannerData_598de07a.introduction = store.description;
+            this.setData({
+                'bannerData': bannerData_598de07a
+            });
+            let bannerData_1032d5cf: any = this.data.bannerData;
+            bannerData_1032d5cf.projectName = store.name;
+            this.setData({
+                'bannerData': bannerData_1032d5cf
+            });
+            let bannerData_95e2f2c5: any = this.data.bannerData;
+            bannerData_95e2f2c5.projectAuthor = store.user.user.username;
+            this.setData({
+                'bannerData': bannerData_95e2f2c5
+            });
+            let bannerData_11331145: any = this.data.bannerData;
 
-    /**
-     * 获取店铺 艺术品
-     * @param key
-     * @param pageIndex
-     */
-    async getStoreArts(key: string, pageIndex: number) {
+            // FIXME
+            // bannerData_11331145.projectTime = dateFormat(store.updatedAt, "yyyy-mm-dd HH:MM:ss");
+            bannerData_11331145.projectTime = store.updatedAt.toString();
+            this.setData({
+                'bannerData': bannerData_11331145
+            });
+            let bannerData_2482fee2: any = this.data.bannerData;
+            bannerData_2482fee2.uid = store.user.user.id;
+            this.setData({
+                'bannerData': bannerData_2482fee2
+            });
+            let bannerData_dea64610: any = this.data.bannerData;
+            bannerData_dea64610.url = store.externalLink;
+            this.setData({
+                'bannerData': bannerData_dea64610
+            });
+            let bannerData_4d40f2b8: any = this.data.bannerData;
+            bannerData_4d40f2b8.isBlind = store.isBlind;
+            this.setData({
+                'bannerData': bannerData_4d40f2b8
+            });
+
+            if (this.data.bannerData.isBlind === true) {
+                await this.initOpenId();
+                await weiXinPayInit();
+            }
+            let bannerData_0863b993: any = this.data.bannerData;
+            bannerData_0863b993.headerImg = ImgPathUtils.getSIcon(store.id);
+            this.setData({
+                'bannerData': bannerData_0863b993
+            });
+            let bannerData_7541faab: any = this.data.bannerData;
+            bannerData_7541faab.banner = ImgPathUtils.getSBanner(store.id);
+            this.setData({
+                'bannerData': bannerData_7541faab
+            });
+        } else {
+            wx.showToast({
+                title: '出错了', icon: 'error', duration: 2000
+            })
+            // PublicUtils.alertView.showAlertView(res.error);
+        }
+    }, async getStoreStat() {
+        const storeId = this.data.options.id;
+        const storeStat = await request.storeStat({storeId: storeId.toString()});
+        if (storeStat) {
+            let bannerData_a9b64f56: any = this.data.bannerData;
+            bannerData_a9b64f56.contents[0].num = storeStat.items;
+            this.setData({
+                'bannerData': bannerData_a9b64f56
+            });
+            let bannerData_b2ac74e2: any = this.data.bannerData;
+            bannerData_b2ac74e2.contents[1].num = storeStat.owners;
+            this.setData({
+                'bannerData': bannerData_b2ac74e2
+            });
+            let bannerData_72685846: any = this.data.bannerData;
+            bannerData_72685846.contents[2].num = storeStat.soldVolume;
+            this.setData({
+                'bannerData': bannerData_72685846
+            });
+            let bannerData_92d167d1: any = this.data.bannerData;
+            bannerData_92d167d1.contents[3].num = storeStat.soldAmount;
+            this.setData({
+                'bannerData': bannerData_92d167d1
+            });
+        }
+    }, getStoreArts: async function (key: string, pageIndex: number) {
         const storeId = this.data.options.id;
         var ascByPrice = false;
         if (key === "false" || key === "true") {
@@ -82,165 +157,143 @@ Page({
             }
             key = "";
         }
-
         const arts = await request.arts({
-            storeId: <string>storeId,
-            key: key,
-            pageIndex: pageIndex,
-            pageSize: 1000,
-            ascByPrice: ascByPrice,
-            includeHidden: false
-        }, true)
-        //  清空数据数组
-        const collectDataT = [];
+            ascByPrice: ascByPrice, key: key, pageIndex: pageIndex, pageSize: 1000, storeId: storeId
+        })
+        let collectData_7f6f2d2e: any = this.data.collectData;
+        collectData_7f6f2d2e = [];
+        this.setData({
+            'collectData': collectData_7f6f2d2e
+        });
         if (arts) {
             for (let index = 0; index < arts.list.length; index++) {
                 const val = new CollectCardDataEntity();
-
-                // maxSupply 最大售卖量
-
-                // supplied 已经买了多少
-
-                /// 作者 暂时 改为 项目名称
                 val.name = arts.list[index].name;
                 if (val.name.length > 8) {
                     val.name = val.name.substring(0, 8) + "...";
                 }
-
                 val.author = arts.list[index].stores[0].name;
-
+                val.category = arts.list[index].stores[0].category.name;
                 if (arts.list[index].supplied >= arts.list[index].maxSupply) val.isShowSupple = true;
-
                 val.supple = arts.list[index].maxSupply;
-
-                /// chainNo 链 id
                 val.id = arts.list[index].id;
-
-                /// 价格
                 val.price = arts.list[index].mintPrice;
-
-                /// 喜欢
                 val.like = arts.list[index].favCount.toString();
-
-                /// 头像
-                // val.headerImg = Public.getImgeWithIntArray(arts.list[index].media);
-                val.headerImg = ImgPath.getMedia(arts.list[index].id);
-
-                /// lastPrice 暂时 改为时间
-                // val.lastPrice = dateFormat(arts.list[index].createdAt, "yyyy-mm-dd HH:MM:ss");
-                collectDataT.push(val);
+                val.headerImg = ImgPathUtils.getMedia(arts.list[index].id);
+                console.log(val.price)
+                // FIXME
+                // if (!openId && Number.parseFloat(val.price) > 0 && (val.supple - arts.list[index].supplied > 0) && this.data.bannerData.isBlind && PublicUtils.isWeChat()) {
+                //     // const storeId = <string>this.data.options.id;
+                //     // location.href = WeiXinApi.getAuthorizeBlindPath({storeId});
+                //     return;
+                // }
+                let collectData_2832eca4: any = this.data.collectData;
+                collectData_2832eca4.push(val);
+                this.setData({
+                    'collectData': collectData_2832eca4
+                });
+                // if (index === 0) {
+                    this.setData({
+                        'num': 1
+                    });
+                // }
             }
+            console.log(arts)
+            let total_6b082abf: any = this.data.total;
+            total_6b082abf = arts.total;
             this.setData({
-                'total': arts.total, 'collectData': collectDataT
-            })
-        } else {
-            // Public.alertView.showAlertView(res.error);
-        }
-    },
-
-    /**
-     * 获取店铺信息
-     */
-    async getStoreInfo() {
-        const storeId = this.data.options.id;
-        const store = await request.store({storeId: <string>storeId});
-        if (store) {
-            const bannerDataT = this.data.bannerData;
-            // 简介
-            bannerDataT.introduction = store.description;
-            // 项目名称
-            bannerDataT.projectName = store.name;
-            // 作者
-            bannerDataT.projectAuthor = store.user.user.username;
-
-            // FIXME
-            // 最后更新时间
-            // bannerDataT.projectTime = dateFormat(store.updatedAt, "yyyy-mm-dd HH:MM:ss");
-            bannerDataT.projectTime = "";
-
-            // uid
-            bannerDataT.uid = store.user.user.id;
-            bannerDataT.url = store.externalLink;
-            // isBlind
-            bannerDataT.isBlind = store.isBlind;
-            // 头像
-            // bannerDataT.headerImg = Public.getImgeWithIntArray(store.icon);
-            bannerDataT.headerImg = ImgPath.getSIcon(store.id);
-            // bannerDataT.banner = Public.getImgeWithIntArray(store.banner);
-            bannerDataT.banner = ImgPath.getSBanner(store.id);
-            this.setData({
-                'bannerData': bannerDataT
-            })
+                'total': total_6b082abf
+            });
         } else {
             wx.showToast({
-                title: 'store error', icon: 'error', duration: 1500
+                title: '出错了', icon: 'error', duration: 2000
             })
         }
-    },
-
-    /**
-     * 获取店铺统计
-     */
-    getStoreStat: async function () {
-        const storeId = this.data.options.id;
-        const storeStat = await request.storeStat({storeId: <string>storeId})
-        if (storeStat) {
-            const bannerDataT = this.data.bannerData;
-            bannerDataT.contents[0].num = storeStat.items;
-            bannerDataT.contents[1].num = storeStat.owners;
-            bannerDataT.contents[2].num = storeStat.soldVolume;
-            bannerDataT.contents[3].num = storeStat.soldAmount;
-        }
-    },
-
-    /**
-     * 搜索
-     * @param key 搜索关键字
-     */
-    searchAction(searchKey: string) {
+    }, searchAction(event: any) {
+        const searchKey = event.detail;
         this.getStoreArts(searchKey, this.data.pageIndex);
-    },
+    }, goToInfo(event: any) {
+        const index = event.detail;
+        this.goToPage("pages/PhoneInfoPage", this.data.collectData[index].id, <string>this.data.options.id);
+    }, getNumber(event: any) {
+        const n = parseInt(event.detail.toString());
+        // let num_976bd9db: any = this.data.num;
+        // num_976bd9db = Math.floor(parseFloat(this.data.collectData[0].price) * n * 100) / 100;
+        this.setData({
+            'num': n
+        });
+        this.setData({
+            'price': this.data.collectData[0].price
+        })
+    }, getBlind() {
+        this.mintArts();
+    }, async mintArts() {
+        if (UserSet.getToken() === null) {
+            PublicUtils.ifGotoLogin();
+            return;
+        }
+        const storeId = <string>this.data.options.id;
+        var openID = openId;
+        if (Number.parseFloat(this.data.collectData[0].price) <= 0) {
+            openID = "";
+        }
+        await wx.showLoading({title: ""})
 
-    /**
-     * 跳转详情
-     * @param index
-     */
-    goToInfo(index: number) {
-        // FIXME
-        // goToPage("phone/info", collectData.value[index].id, <string>router.currentRoute.value.query.id);
-    }, dismiss() {
-    },
-
+        const mintBlind = await request.mintBlind({
+            count: this.data.num,
+            openId: openID!,
+            storeId: storeId,
+            tradeType: TradeType.WxMiniProgram
+        }, true)
+        if (mintBlind) {
+            if (!mintBlind.needPay) {
+                this.goToPage("phone/home", "3");
+            } else {
+                if (!PublicUtils.isWeChat()) {
+                    await wx.hideLoading()
+                    wx.navigateTo({
+                        url: `/pages/PhonePayPage?id=${mintBlind.tradeReturn.code_url}&m=${mintBlind.price * this.data.num}&order=${mintBlind.orderId}`
+                    })
+                    return;
+                }
+                await wx.showLoading({title: ""})
+                const wxJsapiPayParams = await request.wxJsapiPayParams2({prepayId: mintBlind.tradeReturn.prepay_id});
+                const pay = await WXUtils.pay(wxJsapiPayParams);
+                await wx.hideLoading();
+                if (pay.success) {
+                    wx.showToast({
+                        title: '支付完成！', icon: 'error', duration: 2000
+                    })
+                } else {
+                    await wx.showModal({
+                        title: '提示', content: `支付失败：${JSON.stringify(pay.res)}`, showCancel: false
+                    })
+                }
+                // FIXME
+                // const wxJsapiPayParams = await request.wxJsapiPayParams({prepayId: mintBlind.tradeReturn.prepay_id});
+                // const _window: any = window;
+                // await _window.___weixinPay(wxJsapiPayParams.appId, wxJsapiPayParams.timeStamp, wxJsapiPayParams.nonceStr.toString(), wxJsapiPayParams.package, wxJsapiPayParams.signType, wxJsapiPayParams.paySign, function (r: any) {
+                //     if (r.err_msg == "get_brand_wcpay_request:ok") {
+                //         goToPage("phone/home", "3");
+                //     }
+                // });
+                await wx.hideLoading()
+            }
+        } else {
+            await wx.hideLoading()
+            wx.showToast({
+                title: '出错了', icon: 'error', duration: 2000
+            })
+        }
+    }, async shareAction() {
+    }, async init() {
+        await this.getStoreInfo();
+        await this.getStoreStat();
+        await this.getStoreArts("", this.data.pageIndex);
+    }, properties: {}, onLoad(options) {
+        this.setData({
+            'options': options
+        })
+        this.init();
+    }, observers: {}
 });
-
-// FIXME
-// ////// 时间格式化
-// import dateFormat from 'dateformat';
-
-/**
- * 工具栏点击
- */
-// const headerToolsAction = (index: number) => {
-//     switch (index) {
-//         case 0:                 /// 外部网站
-//             if (bannerData.value.url) {
-//                 window.open(bannerData.value.url);
-//             }
-//             break;
-
-//         case 1:                 /// 进入 店铺修改页面
-//             const user = UserSet.getUserInfo();
-//             if (user) {
-//                 const uid = user.id
-//                 if (bannerData.value.uid === uid) {
-//                     goToPage("create", "collection", <string>router.currentRoute.value.query.id);
-//                     return;
-//                 }
-//             }
-//             Public.alertView.showAlertView("只有店铺所有者才能修改该店铺!");
-//             break;
-
-//         default:
-//             break;
-//     }
-// }

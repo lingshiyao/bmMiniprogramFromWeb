@@ -1,16 +1,10 @@
 export class Log {
+    public static logHistory: Map<string, Array<Array<any>>> = new Map<string,
+        Array<Array<any>>>();
     private readonly type: string = "random";
-
     private readonly show: boolean = false;
-
     private readonly saveHistory: boolean = true;
-
     private readonly title: string;
-
-    public static logHistory: Map<string, Array<Array<any>>> = new Map<
-        string,
-        Array<Array<any>>
-    >();
 
     /**
      *
@@ -22,6 +16,26 @@ export class Log {
 
     public static create(title: string = "LOG"): Log {
         return new Log(title);
+    }
+
+    /**
+     *
+     * @param args
+     * @returns
+     */
+    public i(...args: any[]): Function {
+        if (this.saveHistory) {
+            let lst: Array<Array<any>> | undefined = Log.logHistory.get(this.title);
+            if (lst === undefined) {
+                lst = [];
+            }
+            lst.push(args);
+            Log.logHistory.set(this.title, lst);
+        }
+        const none = () => {
+        };
+        if (this.show) return this.getConsolelog(args, this.title);
+        else return none;
     }
 
     /**
@@ -51,25 +65,6 @@ export class Log {
             }
         }
         return console.log.bind(console, format, typeCss, css, msg);
-    }
-
-    /**
-     *
-     * @param args
-     * @returns
-     */
-    public i(...args: any[]): Function {
-        if (this.saveHistory) {
-            let lst: Array<Array<any>> | undefined = Log.logHistory.get(this.title);
-            if (lst === undefined) {
-                lst = [];
-            }
-            lst.push(args);
-            Log.logHistory.set(this.title, lst);
-        }
-        const none = () => { };
-        if (this.show) return this.getConsolelog(args, this.title);
-        else return none;
     }
 
     /**

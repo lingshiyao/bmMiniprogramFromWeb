@@ -1,5 +1,3 @@
-
-
 export class HomeBannerRightEntity {
     public itemName: string = "";                   //// NFT 名称
     public userName: string = "";                   //// 用户名称

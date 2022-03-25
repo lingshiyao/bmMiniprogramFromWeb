@@ -1,4 +1,3 @@
-
 export class UserInputEntity {
 
     public title: string = "Name";

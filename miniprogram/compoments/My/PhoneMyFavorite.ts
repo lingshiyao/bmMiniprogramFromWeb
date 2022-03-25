@@ -1,36 +1,21 @@
-import {Favorite} from "../../api/gql/graphql";
 import {CollectCardDataEntity} from "../../api/entity/Collect/CollectItemsListItemEntity";
-import {ImgPath} from "../../api/ImgPath";
+import {Favorite} from "../../api/net/gql/graphql";
+import {ImgPathUtils} from "../../api/utils/ImgPathUtils";
 import {request} from "../../api/Api";
 
+const ARRAY: any = [];
+
 Component({
-    properties: {},
-    data: {
-        favList: []
-    },
-    methods: {
-        goToInfo(index: number) {
-            // TODO 未验证
-            // router.push({
-            //   path: "/phone/info",
-            //   query: {
-            //     id: favList.value[index].id,
-            //     sid: favList.value[index].sId,
-            //   }
-            // })
-            wx.navigateTo({
-                url: `/pages/PhoneInfoPage?id=${this.data.favList[index].id}&sid=${this.data.favList[index].sId}`
-            })
-        },
+    data: {favList: ARRAY}, methods: {
         async init() {
-            const pagedFavorites = await request.favorites({
+            const pagedFavorites = await request.favoriteList({
                 pageIndex: 0,
                 pageSize: 1000
             }, true);
             if (pagedFavorites != null) {
                 pagedFavorites.list.forEach((favorite: Favorite) => {
                     const collectCardDataEntity: CollectCardDataEntity = new CollectCardDataEntity();
-                    collectCardDataEntity.headerImg = ImgPath.getMedia(favorite.art.id);
+                    collectCardDataEntity.headerImg = ImgPathUtils.getMedia(favorite.art.id);
                     collectCardDataEntity.name = favorite.art.name;
                     collectCardDataEntity.author = favorite.art.stores[0].name;
                     collectCardDataEntity.id = favorite.art.id;
@@ -38,17 +23,20 @@ Component({
                     collectCardDataEntity.price = favorite.art.mintPrice;
                     collectCardDataEntity.sId = favorite.art.stores[0].id;
                     collectCardDataEntity.like = favorite.art.favCount.toString();
-                    const favListT = this.data.favList;
-                    favListT.push(collectCardDataEntity);
+                    let favList_252d75d2: any = this.data.favList;
+                    favList_252d75d2.push(collectCardDataEntity);
                     this.setData({
-                        'favList': favListT
-                    })
-                })
+                        'favList': favList_252d75d2
+                    });
+                });
             }
+        }, goToInfo(event: any) {
+            const index = parseInt(event.currentTarget.dataset.index.toString());
+            wx.navigateTo({
+                url: `/pages/PhoneInfoPage?id=${this.data.favList[index].id}&sid=${this.data.favList[index].sId}`
+            })
         }
-    },
-    ready() {
+    }, properties: {}, ready() {
         this.init();
-    }
+    }, observers: {}
 });
-

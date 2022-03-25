@@ -5,27 +5,25 @@ const NULL: any = null;
 Page({
     data: {
         text: "", title: "", options: NULL
-    }, onLoad(options) {
-        this.setData({
-            'options': options
-        })
-        this.getContent();
-    }, /**
-     * 获取 content
-     */
-    async getContent() {
-        const content = await request.content({key: this.data.options.key})
+    }, async getContent() {
+        const content = await request.content({key: this.data.options.key.toString()});
         if (content) {
             const e = content;
+            let text_fc6dabc4: any = this.data.text;
+            text_fc6dabc4 = e.body;
             this.setData({
-                'text': e.body, 'title': e.title
-            })
+                'text': text_fc6dabc4
+            });
+            let title_8c7d40d5: any = this.data.title;
+            title_8c7d40d5 = e.title;
+            this.setData({
+                'title': title_8c7d40d5
+            });
             wx.setNavigationBarTitle({
-                title: e.title//页面标题为路由参数
+                title: this.data.title
             })
         }
-    }, goToVHtml(event: any) {
-        const index = parseInt(event.detail);
+    }, goToVHtml(index: number) {
         switch (index) {
             case 1: {
                 wx.navigateTo({
@@ -49,5 +47,10 @@ Page({
                 break;
             }
         }
-    }
+    }, properties: {}, onLoad(options) {
+        this.setData({
+            'options': options
+        })
+        this.getContent();
+    }, observers: {}
 });

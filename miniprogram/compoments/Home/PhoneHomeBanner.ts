@@ -1,30 +1,18 @@
 import {HomeBannerRightEntity} from '../../api/entity/Home/HomeBannerRightEntity';
-import {PicCDNUtils} from '../../api/netWorking/PicCDNUtils';
+import {PicCDNUtils} from '../../api/net/PicCDNUtils';
 
 Component({
-    properties: {
-        bannerData: {
-            type: Object, value: new HomeBannerRightEntity(),
-        }
-    }, data: {
-        src: PicCDNUtils.getPicUrl('pic_user.png')
+    data: {
+        src: PicCDNUtils.getPicUrl('ic_video.png')
     }, methods: {
         goToPage(event: any) {
-            const index = event.currentTarget.dataset.index;
+            const index = parseInt(event.currentTarget.dataset.index.toString());
             this.triggerEvent('goToPage', index);
         },
-        imageOnLoad(ev:any) {
-            console.log("----------", ev)
+    }, properties: {
+        bannerData: {
+            type: Object, value: new HomeBannerRightEntity()
         }
-    }, observers: {
-        'bannerData': function (bannerData) {
-        }
-    }
+    }, ready() {
+    }, observers: {}
 });
-// TODO 未验证
-// const emits = defineEmits<{
-//     (el: "goToPage", index: number): void
-// }>();
-//
-// const goToPage = (index: number) => emits('goToPage', index);
-

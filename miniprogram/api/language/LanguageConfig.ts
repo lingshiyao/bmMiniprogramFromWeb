@@ -12,9 +12,7 @@ export class LanguageConfig {
         return this.self;
     }
 
-    /**
-     * 废弃-当前默认为中文
-     */
+    ///// 切换语言
     public changeLanguage(): Language {
         return LanguageCH.init();
     }

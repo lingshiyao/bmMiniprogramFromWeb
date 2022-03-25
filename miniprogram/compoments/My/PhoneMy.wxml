@@ -1,16 +1,14 @@
+<!--PASS-->
 <view class="my">
     <view class="top-line">
-        <image show-menu-by-longpress lazy-load src="{{settingUrl}}" class="setting" bindtap="gotoSetting"/>
+        <image show-menu-by-longpress lazy-load src="{{settingUrl}}" class="setting" bindtap="gotoSetting"></image>
     </view>
     <view class="banner">
-        <image show-menu-by-longpress lazy-load src="{{userBGUrl}}" class="banner-bg"/>
-        <view class="header-border">
-            <view>
-                <image show-menu-by-longpress lazy-load mode="aspectFill" src="{{headerUrl}}" id="my_header_url" class="header"/>
-            </view>
-        </view>
+        <image show-menu-by-longpress lazy-load src="{{userBGUrl}}" class="banner-bg"></image>
+        <LoadingImg show-menu-by-longpress lazy-load mode="aspectFill" src="{{headerUrl}}"
+               class="header-border" binderror="headerLoadFail" border="border-radius: 8.905vw;"/>
         <view class="name">
-            {{userName}}
+            {{ userName }}
         </view>
     </view>
     <view class="select1">
@@ -20,13 +18,11 @@
         <header-item1 selected="{{selected1[3]}}" name="我的创作" bindtap="onSelect1" data-index="3"></header-item1>
     </view>
     <view wx:if="{{selected1[0] == true}}" class="select2">
-        <PhoneMyOrderItem selected="{{selected2[0]}}" name="全部" bindtap="onSelect2" data-index="0"></PhoneMyOrderItem>
-        <PhoneMyOrderItem selected="{{selected2[1]}}" name="待确认" bindtap="onSelect2" data-index="1"></PhoneMyOrderItem>
-        <PhoneMyOrderItem selected="{{selected2[2]}}" name="已成功" bindtap="onSelect2" data-index="2"></PhoneMyOrderItem>
-        <PhoneMyOrderItem selected="{{selected2[3]}}" name="已失败" bindtap="onSelect2" data-index="3"></PhoneMyOrderItem>
+        <PhoneSelectBox menuData="{{selectBoxData}}" class="store-art-select-box"
+                        bind:clickCallBack="clickCallBack"/>
     </view>
     <PhoneMyFavorite wx:if="{{selected1[2]}}"></PhoneMyFavorite>
     <PhoneMyCollection wx:if="{{selected1[1]}}"></PhoneMyCollection>
-    <PhoneMyOrder wx:if="{{selected1[0]}}" orderFilter="{{orderFilter}}"></PhoneMyOrder>
-    <PhoneMyCreation wx:if="{{selected1[3]}}"></PhoneMyCreation>
+    <PhoneMyOrder wx:if="{{selected1[0]}}" orderFilter="{{filter}}"></PhoneMyOrder>
+    <PhoneMyCreation wx:if="{{selected1[3]}}"/>
 </view>

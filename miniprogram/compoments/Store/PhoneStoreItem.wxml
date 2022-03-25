@@ -1,17 +1,10 @@
 <view class="phone-store-item">
     <view class="phone-store-item-content">
-
-<!--        // TODO 未验证-->
-<!--        <view class="phone-store-item-img-border">-->
-<!--            <image id="{{id}}" src="{{data.headerImg}}" class="phone-store-item-img"></image>-->
-<!--        </view>-->
-        <view class="phone-store-item-img-border">
-            <image show-menu-by-longpress lazy-load mode="aspectFill" id="{{id}}" src="{{data.headerImg}}" class="phone-store-item-img-border"></image>
-        </view>
-
+        <image show-menu-by-longpress lazy-load id="{{id}}" mode="aspectFill" src="{{data.headerImg}}"
+                    class="phone-store-item-img-border"></image>
         <view class="phone-store-item-title">
             {{ data.author }}
-            <image show-menu-by-longpress lazy-load src="{{src}}" style="width: 2.67vw;height: 2.8vw;"/>
+            <image src="{{src}}" style="width:3vw;height:3vw;margin-left:1.4vw"></image>
         </view>
         <view class="phone-store-item-name">
             <view class="phone-store-item-subtitle">
@@ -37,12 +30,14 @@
                 {{ data.supple }}
             </view>
         </view>
-        <view class="phone-store-item-money">
-            ¥{{ data.price }}
-        </view>
-        <view class="phone-store-item-like">
-            <image show-menu-by-longpress lazy-load src="{{src1}}" class="phone-store-item-like-img" />
-            {{ data.like }}
+        <view>
+            <view class="phone-store-item-money">
+                ¥{{ data.price }}
+            </view>
+            <view class="phone-store-item-like">
+                <image src="{{src1}}" class="phone-store-item-like-img" style="width:3vw;height:3vw"></image>
+                {{ data.like }}
+            </view>
         </view>
     </view>
 </view>

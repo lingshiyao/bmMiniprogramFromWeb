@@ -1,32 +1,23 @@
 import {InfoHeaderEntity} from "../../api/entity/Info/InfoHeaderEntity";
-import {ImgPath} from "../../api/ImgPath";
+import {ImgPathUtils} from "../../api/utils/ImgPathUtils";
 
 Component({
-    properties: {
-        nft: {
-            type: Object, value: new InfoHeaderEntity()
-        }
-    }, data: {
-        src: "",
-        src1: ImgPath.getImgPath('btn_revise'),
+    data: {
+        src: "", src1: ImgPathUtils.getImgPath('btn_revise'),
     }, methods: {
         action(event: any) {
-            const index = event.currentTarget.dataset.index;
+            const index = parseInt(event.currentTarget.dataset.index.toString());
             this.triggerEvent('action', index);
+        }
+    }, properties: {
+        nft: {
+            type: Object, value: new InfoHeaderEntity()
         }
     }, observers: {
         'nft': function (nft) {
             this.setData({
-                'src': nft.isLike ? ImgPath.getImgPath('btn_collect_selected') : ImgPath.getImgPath('btn_collect_normal')
+                'src': nft.isLike ? ImgPathUtils.getImgPath('btn_collect_selected') : ImgPathUtils.getImgPath('btn_collect_normal')
             })
         }
     }
 });
-
-// TODO 未验证
-// const emits = defineEmits<{
-//     (el: "action", index: number): void
-// }>();
-//
-// const action = (index: number) => emits('action', index);
-

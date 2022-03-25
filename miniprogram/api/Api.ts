@@ -1,3 +1,3 @@
-import {RequestG} from "./gql/RequestG";
+import {RequestG} from "./net/gql/RequestG";
 
 export const request = new RequestG();

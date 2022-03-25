@@ -6,21 +6,16 @@ interface ConfirmListener {
     onCancel(): void;
 }
 
-let listener: ConfirmListener;
+const ARRAY: any = [];
+
+let listener: ConfirmListener | null = null;
 
 Component({
-    properties: {},
-    data: {
-        modalInputParam: {
-            defaultValue: [],
-            inputPlaceholder: [],
-            submitContent: "",
-            title: "",
-        },
-        isShow: false,
-        inputs: []
-    },
-    methods: {
+    properties: {}, data: {
+        inputs: ARRAY, type: ARRAY, modalInputParam: {
+            defaultValue: ARRAY, inputPlaceholder: ARRAY, submitContent: "", title: "", isPwd: ARRAY
+        }, isShow: false
+    }, methods: {
         show(_modalInputParam: ModalInputParam) {
             this.setData({
                 'isShow': true
@@ -28,57 +23,49 @@ Component({
             this.setData({
                 'modalInputParam': _modalInputParam
             })
-
             const inputsT = [];
+            const typeT = [];
             for (let i = 0; i < _modalInputParam.inputPlaceholder.length; i++) {
                 inputsT.push(_modalInputParam.defaultValue[i]);
+                if (_modalInputParam.isPwd[i] == true) {
+                    typeT.push("password")
+                } else {
+                    typeT.push("")
+                }
             }
             this.setData({
-                'inputs': inputsT
+                'type': typeT, inputs: inputsT
             })
-            return new Promise<Array<string> | null>((resolve) => {
+            return new Promise<any>((resolve) => {
                 listener = {
-                    onConfirm: (data: Array<string>): void => {
-                        console.log(data)
+                    onConfirm: (data: string[]): void => {
                         resolve(data);
                     }, onCancel: (): void => {
                         resolve(null);
                     },
-                };
-            });
-        },
-        submit() {
-            this.setData({
-                'isShow': false
-            })
-            setTimeout(() => {
-                console.log(this.data.inputs)
-                listener.onConfirm(this.data.inputs);
-                const inputsT = this.data.inputs;
-                for (let i = 0; i < inputsT.length; i++) {
-                    inputsT[i] = "";
                 }
-                this.setData({
-                    'inputs': inputsT
-                })
-                // TODO 此处不需要等待，当前没有动画
-            }, 0)
-        },
-        cancel() {
+            });
+        }, submit() {
             this.setData({
                 'isShow': false
             })
             setTimeout(() => {
-                listener.onCancel();
-            }, 500)
-        },
-        myInput(e: any) {
-            const index:number = e.currentTarget.dataset.index;
-            const txt:string = e.detail.value;
-            const inputT = this.data.inputs;
-            inputT[index] = txt;
+                if (listener) listener.onConfirm(this.data.inputs);
+            }, 0)
+        }, cancel() {
             this.setData({
-                'input': inputT
+                isShow: false
+            })
+            setTimeout(() => {
+                if (listener) listener.onCancel();
+            }, 0)
+        }, myInput(e: any) {
+            const index: number = e.currentTarget.dataset.index;
+            const txt: string = e.detail.value;
+            const inputsT = this.data.inputs;
+            inputsT[index] = txt;
+            this.setData({
+                inputs: inputsT
             })
         }
     }

@@ -1,11 +1,12 @@
 {
   "component": true,
   "usingComponents": {
-    "header-item1": "./PhoneMyItem",
-    "PhoneMyOrder": "../Order/PhoneMyOrder",
-    "PhoneMyOrderItem": "./PhoneMyOrderItem",
-    "PhoneMyCollection": "./PhoneMyCollection",
-    "PhoneMyFavorite": "./PhoneMyFavorite",
-    "PhoneMyCreation": "./PhoneMyCreation"
+    "header-item1": "/compoments/My/PhoneMyItem",
+    "PhoneMyOrder": "/compoments/Order/PhoneMyOrder",
+    "PhoneMyCollection": "/compoments/My/PhoneMyCollection",
+    "PhoneMyFavorite": "/compoments/My/PhoneMyFavorite",
+    "PhoneMyCreation": "/compoments/My/PhoneMyCreation",
+    "PhoneSelectBox": "/compoments/Store/PhoneSelectBox",
+    "LoadingImg": "/compoments/Global/LoadingImg"
   }
 }

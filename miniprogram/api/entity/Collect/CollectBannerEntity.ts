@@ -1,26 +1,10 @@
-const pic_arrow_normal = ImgPath.getImgPath('pic_arrow_normal');
+import {ImgPathUtils} from "../../utils/ImgPathUtils";
 
-const pic_arrow_selected = ImgPath.getImgPath('pic_arrow_selected');
+const pic_web_normal = ImgPathUtils.getImgPath('pic_web_normal');
 
-import {ImgPath} from "../../ImgPath";
+const pic_web_selected = ImgPathUtils.getImgPath('pic_web_selected');
 
-const pic_web_normal = ImgPath.getImgPath('pic_web_normal');
-
-const pic_web_selected = ImgPath.getImgPath('pic_web_selected');
-
-const pic_discord_normal = ImgPath.getImgPath('pic_discord_normal');
-
-const pic_discord_selected = ImgPath.getImgPath('pic_discord_selected');
-
-const pic_instagram_fill_normal = ImgPath.getImgPath('pic_instagram_fill_normal');
-
-const pic_instagram_fill_selected = ImgPath.getImgPath('pic_instagram_fill_selected');
-
-const pic_twitter_normal = ImgPath.getImgPath('pic_twitter_normal');
-
-const pic_twitter_selected = ImgPath.getImgPath('pic_twitter_selected');
-
-const pic_more_selected = ImgPath.getImgPath('pic_more_selected');
+const pic_more_selected = ImgPathUtils.getImgPath('pic_more_selected');
 
 export class CollectBannerItemEntity {
     public normal: string = '';
@@ -73,13 +57,8 @@ export class CollectBannerEntity {
     public isBlind: boolean = false;
 
     constructor() {
-        // this.items.push(CollectBannerItemEntity.init(pic_arrow_normal, pic_arrow_selected));
         this.items.push(CollectBannerItemEntity.init(pic_web_normal, pic_web_selected));
-        // this.items.push(CollectBannerItemEntity.init(pic_discord_normal, pic_discord_selected));
-        // this.items.push(CollectBannerItemEntity.init(pic_instagram_fill_normal, pic_instagram_fill_selected));
-        // this.items.push(CollectBannerItemEntity.init(pic_twitter_normal, pic_twitter_selected));
         this.items.push(CollectBannerItemEntity.init(pic_more_selected, pic_more_selected));
-
         this.contents.push(CollectBannerContentEntity.init('发行数量', '0'));
         this.contents.push(CollectBannerContentEntity.init('总拥有者', '0'));
         this.contents.push(CollectBannerContentEntity.init('已售数量', '0'));

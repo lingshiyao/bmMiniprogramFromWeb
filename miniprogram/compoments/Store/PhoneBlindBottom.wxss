@@ -1,0 +1,53 @@
+
+.phone-blind-bottom {
+    position: fixed;
+    z-index: 2;
+    background: red;
+    bottom: 0vw;
+}
+
+.phone-blind-bottom-background {
+    width: 100vw;
+    background-color: white;
+    height: 16vw;
+    vertical-align: middle;
+}
+
+.phone-blind-bottom-title {
+    height: 16vw;
+    line-height: 16vw;
+    font-size: 4vw;
+    font-weight: 500;
+    color: #1e1e1e;
+    display: inline-block;
+    text-align: left;
+    margin-left: 2vw;
+    vertical-align: middle;
+}
+
+.phone-blind-bottom-price {
+    display: inline-block;
+    height: 16vw;
+    line-height: 16vw;
+    width: 27vw;
+    font-size: 6.4vw;
+    font-weight: bold;
+    color: #ff4b36;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.pay-button {
+    background-color: #f99d1a;
+    width: 49.33vw;
+    height: 11.73vw;
+    border-radius: 3vw;
+    line-height: 11.73vw;
+    display: inline-block;
+    font-size: 4vw;
+    font-weight: 500;
+    color: #1e1e1e;
+    margin: 2vw 2vw 2vw 4vw;
+    vertical-align: middle;
+    text-align: center;
+}

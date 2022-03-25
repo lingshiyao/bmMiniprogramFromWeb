@@ -30,7 +30,7 @@
 .header-border {
     width: 17.81vw;
     height: 17.81vw;
-    background: #ffffff;
+    background: #131c43;
     border-radius: 8.905vw;
     position: absolute;
     display: inline-flex;
@@ -48,7 +48,7 @@
 }
 
 .select1 {
-    width: 89vw;
+    width: 92vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -78,4 +78,12 @@
     box-shadow: 0vw 0vw 1vw 0vw rgba(0, 0, 0, 0.12);
     border-radius: 3vw;
     margin-right: 4vw;
+}
+
+.store-art-select-box {
+    margin-left: 1vw;
+    background-color: white;
+    border-radius: 2.7vw;
+    height: 9.5vw;
+    width: 24vw;
 }

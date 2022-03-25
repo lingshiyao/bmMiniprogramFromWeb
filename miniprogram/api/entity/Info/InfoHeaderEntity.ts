@@ -1,14 +1,15 @@
-import {ImgPath} from "../../ImgPath";
+import {ImgPathUtils} from "../../utils/ImgPathUtils";
+
 
 export class InfoHeaderImgsEntity {
-    public ethLogo: string = ImgPath.getImgPath('icon_eth');
-    public flowerLogo: string = ImgPath.getImgPath('icon_flower');
+    public ethLogo: string = ImgPathUtils.getImgPath('icon_eth');
+    public flowerLogo: string = ImgPathUtils.getImgPath('icon_flower');
     public headerImg: string = "";
-    public buyImgStr: string = ImgPath.getImgPath('ic_wallet_selected');
-    public makeOfferImgStr: string = ImgPath.getImgPath('ic_label_normal');
+    public buyImgStr: string = ImgPathUtils.getImgPath('ic_wallet_selected');
+    public makeOfferImgStr: string = ImgPathUtils.getImgPath('ic_label_normal');
     public defaultImg: string = "";
-    public pic_love_normal: string = ImgPath.getImgPath('btn_collect_normal');
-    public pic_love_selected: string = ImgPath.getImgPath('btn_collect_selected');
+    public pic_love_normal: string = ImgPathUtils.getImgPath('btn_collect_normal');
+    public pic_love_selected: string = ImgPathUtils.getImgPath('btn_collect_selected');
 }
 
 export class InfoHeaderItemsEntity {
@@ -46,12 +47,14 @@ export class InfoHeaderEntity {
     public storeid: string = "";
 
     public showEitdBtn: Boolean = false;
-    
+
     public artName: string = "";
 
     public price: string = "";
 
     public storeName: string = "";
+
+    public isBlind: false = false;
 
     constructor() {
         this.items.push(InfoHeaderItemsEntity.init("", "", "", ""));

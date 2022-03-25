@@ -1,4 +1,3 @@
-
 export class MyCollectionsItemEntity {
 
     /// bannerImg
@@ -19,8 +18,8 @@ export class MyCollectionsItemEntity {
     /// artCount: Int!
     public artCount: string = "";
 
-    public static init(banner:string, headerImg: string, name: string, description: string, artCount: string, id: string): MyCollectionsItemEntity {
-        const self = new MyCollectionsItemEntity ();
+    public static init(banner: string, headerImg: string, name: string, description: string, artCount: string, id: string): MyCollectionsItemEntity {
+        const self = new MyCollectionsItemEntity();
         self.banner = banner;
         self.headerImg = headerImg;
         self.description = description;

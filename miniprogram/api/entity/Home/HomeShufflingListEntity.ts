@@ -9,5 +9,4 @@ export class HomeShufflingListEntity {
         this.dataArray.push(HomeShufflingItemEntity.init("", "", ""));
         this.dataArray.push(HomeShufflingItemEntity.init("", "", ""));
     }
-
 }
